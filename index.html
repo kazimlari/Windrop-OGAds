@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wendy's Reward - LIVE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding-bottom: 90px;
+            overflow-x: hidden;
+        }
+
+        .mobile-container {
+            width: 100%;
+            max-width: 420px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- Live Badge --- */
+        .live-badge {
+            background: #E31837; 
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            align-self: flex-start;
+        }
+        .blink-dot {
+            width: 8px;
+            height: 8px;
+            background: #ffffff;
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
+        /* --- Headers --- */
+        h1 { 
+            font-size: 1.6rem;
+            font-weight: 800; 
+            text-align: center; 
+            color: #111; 
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        h1 .red-text {
+            color: #E31837;
+        }
+
+        /* --- Hero Art --- */
+        .gift-card-img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #E31837 0%, #8A0C20 100%);
+            aspect-ratio: 1.6;
+            display: flex;
+            align-items: center; justify-content: center;
+            position: relative; overflow: hidden; margin-bottom: 25px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .wendys-logo {
+            width: 110px;
+            height: 110px;
+            background-color: white; 
+            padding: 4px;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+            animation: floatLogo 3s ease-in-out infinite;
+            
+            /* Enhanced CSS to force a perfect circle */
+            border-radius: 50% !important;
+            aspect-ratio: 1 / 1 !important;
+            object-fit: cover !important;
+            overflow: hidden !important;
+        }
+
+        @keyframes floatLogo {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .price-tag { 
+            position: absolute;
+            bottom: 15px; right: 15px; 
+            color: #E31837; 
+            font-weight: 800; font-size: 1.4rem; 
+            background: rgba(255,255,255,0.9);
+            padding: 5px 10px;
+            border-radius: 8px;
+        }
+        .logo-text { 
+            position: absolute;
+            top: 15px; left: 15px;
+            color: #ffffff; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.5px;
+        }
+
+        /* --- Cards --- */
+        .info-card {
+            background: white;
+            width: 100%; border-radius: 16px;
+            padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            margin-bottom: 12px;
+        }
+        .card-header { color: #111; font-weight: 800; font-size: 1.1rem; margin-bottom: 20px; display: flex; justify-content: space-between; }
+        .card-header span.red-text { color: #E31837; }
+        .card-header i { font-size: 0.9rem; margin-left: 5px; color: #444; }
+
+        /* Checklist */
+        .list-item { display: flex; align-items: flex-start; margin-bottom: 18px; }
+        .list-item:last-child { margin-bottom: 0; }
+        .icon-check { 
+            color: #E31837;
+            font-size: 1.2rem;
+            margin-right: 12px; 
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .text-content h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 3px; color: #111; }
+        .text-content p { font-size: 0.8rem; color: #666; }
+
+        /* Common Questions */
+        .question-item { padding: 12px 0; border-bottom: 1px solid #eee; cursor: pointer; }
+        .question-item:last-child { border-bottom: none; }
+        .q-header { display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 0.9rem; }
+        .q-answer { 
+            max-height: 0;
+            overflow: hidden; transition: max-height 0.3s ease; 
+            color: #666; font-size: 0.85rem; margin-top: 0;
+        }
+        .question-item.active .q-answer { max-height: 100px; margin-top: 10px; }
+        .question-item.active .fa-plus { transform: rotate(45deg); transition: transform 0.3s; }
+
+        /* --- Live Feed Reviews --- */
+        .live-feed-container {
+            height: 320px;
+            overflow-y: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        
+        .feed-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 60px;
+            background: linear-gradient(to bottom, #ffffff 0%, rgba(255,255,255,0) 100%);
+            z-index: 5; pointer-events: none;
+        }
+
+        .feed-scroll-area {
+            display: flex;
+            flex-direction: column; gap: 12px;
+            overflow-y: auto; scroll-behavior: smooth; padding-top: 40px;
+        }
+        .feed-scroll-area::-webkit-scrollbar { display: none; }
+        
+        .review-bubble {
+            display: flex;
+            gap: 10px;
+            animation: slideIn 0.4s ease-out;
+            opacity: 0.95;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 0.95; transform: translateY(0); }
+        }
+
+        .rv-avatar {
+            width: 32px;
+            height: 32px; border-radius: 50%;
+            color: white; font-weight: 700; font-size: 0.75rem;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; text-transform: uppercase;
+        }
+
+        .rv-content {
+            background: #f8f9fa;
+            padding: 8px 12px;
+            border-radius: 14px; border-top-left-radius: 2px;
+            font-size: 0.8rem;
+        }
+
+        .rv-name { font-weight: 700; font-size: 0.75rem; color: #333; margin-bottom: 2px; }
+        .rv-text { color: #444; line-height: 1.3; }
+        .rv-time { font-size: 0.65rem; color: #888; margin-top: 4px; display: block; }
+
+        /* Write Review Input */
+        .input-area {
+            display: flex;
+            gap: 8px; margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;
+        }
+        .live-input {
+            flex: 1;
+            padding: 10px; border-radius: 20px; border: 1px solid #ddd;
+            font-size: 0.85rem; background: #f9f9f9;
+        }
+        .send-btn {
+            background: #E31837;
+            color: white; border: none; width: 36px; height: 36px;
+            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+        }
+
+        /* --- Footer --- */
+        .sticky-footer {
+            position: fixed;
+            bottom: 0; left: 0; width: 100%;
+            background: white; padding: 15px;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
+            display: flex; justify-content: center;
+            z-index: 100;
+        }
+        .claim-btn {
+            background-color: #E31837;
+            color: white; 
+            width: 100%; max-width: 400px;
+            padding: 16px; border: none; border-radius: 25px;
+            font-size: 1.1rem; font-weight: 700; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(227, 24, 55, 0.3);
+            animation: pulseBtn 2s infinite;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        @keyframes pulseBtn { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+
+        /* --- Toast Notification --- */
+        .toast {
+            position: fixed;
+            top: 15px; right: 15px;
+            background: rgba(0,0,0,0.9); color: white;
+            padding: 10px 15px; border-radius: 8px;
+            font-size: 0.75rem; display: flex; align-items: center;
+            gap: 10px;
+            transform: translateX(150%); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 999;
+        }
+        .toast.show { transform: translateX(0); }
+
+        /* --- Legal & Modals --- */
+        .legal-links {
+            text-align: center; margin-top: 15px; margin-bottom: 25px; font-size: 0.75rem; color: #999;
+        }
+        .legal-links span { cursor: pointer; text-decoration: underline; margin: 0 5px; }
+        
+        .modal {
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6); align-items: center; justify-content: center; padding: 15px;
+        }
+        .modal-content {
+            background: white; border-radius: 12px; padding: 20px; width: 100%; max-width: 400px;
+            max-height: 80vh; overflow-y: auto; position: relative; font-size: 0.85rem; color: #444; line-height: 1.6;
+        }
+        .modal-content h2 { margin-bottom: 15px; color: #111; font-size: 1.2rem; }
+        .modal-content p { margin-bottom: 12px; }
+        .close-modal {
+            position: absolute; top: 15px; right: 15px; font-size: 1.2rem; cursor: pointer; color: #888;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-burger" style="color: #E31837;"></i>
+        <span id="toast-text">User claimed reward</span>
+    </div>
+
+    <div class="mobile-container">
+        
+        <div class="live-badge">
+            <div class="blink-dot"></div>
+            LIVE: <span id="viewer-count">842</span> viewing
+        </div>
+
+        <h1>Get <span class="red-text">$500</span> Towards<br><span class="red-text">Wendy's!</span></h1>
+
+        <div class="gift-card-img">
+            <div class="logo-text"><i class="fa-solid fa-burger"></i> WENDY'S REWARDS</div>
+            <img src="https://unavatar.io/twitter/Wendys" alt="Wendy's Logo" class="wendys-logo">
+            <div class="price-tag">$500</div>
+        </div>
+
+        <div class="info-card">
+            <div class="card-header">Quick Start Guide</div>
+            <div class="list-item">
+                <div class="icon-check"><i class="fa-solid fa-check"></i></div>
+                <div class="text-content"><h4>Complete 4-5 deals</h4><p>More deals, more food</p></div>
+            </div>
+            <div class="list-item">
+                <div class="icon-check"><i class="fa-solid fa-check"></i></div>
+                <div class="text-content"><h4>Enter a valid email</h4><p>For instant code delivery</p></div>
+            </div>
+            <div class="list-item">
+                <div class="icon-check"><i class="fa-solid fa-check"></i></div>
+                <div class="text-content"><h4>Must be 18 years or older</h4><p>Required to participate</p></div>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <div class="card-header">Common Questions</div>
+            
+            <div class="question-item" onclick="toggleAnswer(this)">
+                <div class="q-header">
+                    <span>How long do the deals take?</span>
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <div class="q-answer">
+                    Usually 15-30 minutes. You need to complete the required number of deals to verify your status.
+                </div>
+            </div>
+
+            <div class="question-item" onclick="toggleAnswer(this)">
+                <div class="q-header">
+                    <span>What kind of deals are included?</span>
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <div class="q-answer">
+                    Free trials, app installs, surveys, and standard promotional deals.
+                </div>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <div class="card-header">
+                Live Comments <span style="font-size: 0.8rem; color: #cc0000; margin-left: auto;">● Live</span>
+            </div>
+            
+            <div class="live-feed-container">
+                <div class="feed-overlay"></div>
+                <div class="feed-scroll-area" id="feedArea"></div>
+            </div>
+
+            <div class="input-area">
+                <input type="text" id="userComment" class="live-input" placeholder="Write a comment...">
+                <button class="send-btn" onclick="postUserComment()"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+
+        <!-- Legal Links -->
+        <div class="legal-links">
+            <span onclick="openModal('privacyModal')">Privacy Policy</span> | 
+            <span onclick="openModal('termsModal')">Terms & Conditions</span> | 
+            <span onclick="openModal('disclaimerModal')">Disclaimer</span>
+        </div>
+
+    </div>
+
+    <!-- Privacy Modal -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('privacyModal')"><i class="fa-solid fa-xmark"></i></span>
+            <h2>Privacy Policy</h2>
+            <p>Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your information when you participate in our promotional offers.</p>
+            <p>We may collect basic information required to facilitate the reward delivery. We do not sell your personal data to third parties.</p>
+            <p>If you have any questions or concerns regarding this policy, please contact us at: <strong>davidlari@outlook.com</strong>.</p>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('termsModal')"><i class="fa-solid fa-xmark"></i></span>
+            <h2>Terms and Conditions</h2>
+            <p>By accessing this landing page and participating in the offer, you agree to abide by these Terms and Conditions.</p>
+            <p>You must be 18 years of age or older to participate. You must complete the required sponsor deals to qualify for the reward. Completion times may vary based on user location and demographics.</p>
+            <p>For any support or inquiries regarding these terms, please contact: <strong>davidlari@outlook.com</strong>.</p>
+        </div>
+    </div>
+
+    <!-- Disclaimer Modal -->
+    <div id="disclaimerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('disclaimerModal')"><i class="fa-solid fa-xmark"></i></span>
+            <h2>Disclaimer</h2>
+            <p>This website is an independent promotional entity and is not affiliated with, endorsed by, or sponsored by Wendy's or any of its subsidiaries.</p>
+            <p>All trademarks, logos, and brand names are the property of their respective owners. The reward is distributed through a third-party CPA network upon successful completion of required sponsor tasks.</p>
+            <p>For questions regarding this disclaimer, contact: <strong>davidlari@outlook.com</strong>.</p>
+        </div>
+    </div>
+
+    <div class="sticky-footer">
+        <button class="claim-btn" onclick="window.location.href='https://trksy.org/aff_c?offer_id=1476&aff_id=151006'">
+            🍔 Start Survey Now
+        </button>
+    </div>
+
+    <script>
+        
+        // --- FAQ TOGGLE LOGIC ---
+        function toggleAnswer(element) {
+            element.classList.toggle('active');
+        }
+
+        // --- MODAL LOGIC ---
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
+        }
+
+        // --- 1. THE USER PROVIDED DATABASE ---
+        const reviewDatabase = [
+            "bruh is this real or what?",
+            "works fine for me.",
+            "waiting on email.",
+            "is the strawberry frosty back this week right?",
+            "I was stuck on the last step.",
+            "food secured.",
+            "does it work on iphone?",
+            "Just walked out of Wendy's with my food. Ty!!",
+            "Anyone from Cali here?",
+            "Has anyone tried the cashapp option?",
+            "got my code. finally.",
+            "checking balance...",
+            "Can I just get cash instead of Wendy's?",
+            "patience bro, it takes like 20 mins.",
+            "i want that 4 for 4 so bad rn",
+            "Is the $500 card real or just the small ones?",
+            "worth it for free frostys tho",
+            "best secret menu items?",
+            "getting a baconator for lunch",
+            "man i’m just here for the comments",
+            "how long does the email take to come?",
+            "site is a bit slow rn",
+            "i hate downloading games ugh",
+            "spicy chicken sandwich is the only good one don't @ me",
+            "Just paid for my group's order with this. Clutccchhh.",
+            "took like 2 mins for me.",
+            "going to get a large frosty rn",
+            "nice",
+            "scam?",
+            "does this work in canada?",
+            "just finished the tasks. took forever.",
+            "boring",
+            "Wait, do I have to do all the deals to get the reward?",
+            "free is free",
+            "delivery or pickup?",
+            "try a different email.",
+            "omg i got the $500 one. im gonna be full lol",
+            "yeah cashapp is faster than the gift code.",
+            "it’s legit but the survey is boring af.",
+            "My brother got the $500 one but he had to play games for like 2 hours.",
+            "i’m literally craving food looking at this",
+            "mine was pending for like 5 mins then cleared.",
+            "sending this to my mom so she can buy me some",
+            "wait i closed the tab by accident can i go back?",
+            "Did anyone else get the $50 bonus?",
+            "yeah it works on iphone i just did it.",
+            "don't skip the verify part guys",
+            "do i have to be 18?",
+            "code sent to email. easy.",
+            "Dallas here.",
+            "my stomach is ready",
+            "US only ig.",
+            "this is taking too long",
+            "im doing this while in class lol",
+            "works for both i think.",
+            "Why does it ask for my zip code?",
+            "cap",
+            "Mine says pending??",
+            "secured the bag 🍔",
+            "Just to see if there's a store near u.",
+            "too many people doing it prolly",
+            "check your history and click it again, it saves progress.",
+            "do the apps have viruses?",
+            "refreshing the page",
+            "just refresh if it gets stuck, that happened to me.",
+            "sweet thanks",
+            "Click the button at the bottom after u finish the tasks.",
+            "nah they are just normal app store games.",
+            "not a scam just tedious. u gotta actually do the offers.",
+            "received! getting a baconator.",
+            "free food is free food.",
+            "first time trying this, hope it works",
+            "Yeah there is a cash option at the end if u dont want the gift card.",
+            "ok got it.",
+            "LA here. it works.",
+            "no cap i just redeemed it at the store.",
+            "yeah i got the bonus for finishing the extra survey.",
+            "how do i claim it?",
+            "Anyone from Texas?",
+            "yeah just for verification code.",
+            "Yes u have to do them all, just download the apps and delete them later.",
+            "I tried yesterday and it didn't work.",
+            "done.",
+            "it asked for my phone number is that safe?",
+            "checking balance...",
+            "just give it a min",
+            "works on iphone",
+            "nice",
+            "took forever.",
+            "boring",
+            "code sent",
+            "free is free",
+            "refreshing",
+            "works fine",
+            "waiting on email",
+            "easy",
+            "US only",
+            "Clutccchhh"
+        ];
+
+        // Shuffle function
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+        shuffleArray(reviewDatabase);
+        const names = [
+            "Jordan S.", "Mikey P.", "Sarah J.", "Ash_Tray", "BigMike", 
+            "Emily Rose", "David K.", "Jess_W", "Chris_B", "Mandy99",
+            "Latoya J.", "Maria_Garcia", "Bella C.", "User8821",
+            "Sophie L.", "Ethan M.", "Liv_P", "Liam N.", "Ava K.",
+            "Noah J.", "Izzy D.", "Mason F.", "Mia H.", "Jake_From_StateFarm",
+            "Charlie Z.", "Will X.", "Amy C.", "James V.", "Harper B.",
+            "BurgerFan", "J-Lo", "User1234", "CryptoKing", "FrostyLover",
+            "MomOf3", "BrokeStudent", "GamerGuy99", "SarahBear", "Jason D."
+        ];
+
+        const colors = ['#E31837', '#FF2442', '#444', '#111', '#8A0C20'];
+
+        // --- 2. LIVE FEED LOGIC ---
+        const feedArea = document.getElementById('feedArea');
+        function createReviewElement(name, text, isUser = false) {
+            const div = document.createElement('div');
+            div.className = 'review-bubble';
+            
+            let initials = name.substring(0,2).toUpperCase();
+            if(name.includes(' ')) {
+                 initials = name.split(' ').map(n => n[0]).join('').substring(0,2).toUpperCase();
+            }
+            
+            let color = isUser ? '#E31837' : colors[Math.floor(Math.random() * colors.length)];
+            
+            div.innerHTML = `
+                <div class="rv-avatar" style="background: ${color}">${initials}</div>
+                <div class="rv-content">
+                    <div class="rv-name">${name}</div>
+                    <div class="rv-text">${text}</div>
+                    <span class="rv-time">Just now</span>
+                </div>
+            `;
+            return div;
+        }
+
+        function addReviewToFeed(name, text) {
+            const review = createReviewElement(name, text);
+            feedArea.appendChild(review);
+            feedArea.scrollTop = feedArea.scrollHeight;
+            if (feedArea.children.length > 50) {
+                feedArea.removeChild(feedArea.firstChild);
+            }
+        }
+
+        // --- 3. SIMULATE BUSY TRAFFIC ---
+        let reviewIndex = 0;
+        function scheduleNextReview() {
+            const delay = Math.floor(Math.random() * 2200) + 800;
+            setTimeout(() => {
+                const text = reviewDatabase[reviewIndex % reviewDatabase.length];
+                const name = names[Math.floor(Math.random() * names.length)];
+                addReviewToFeed(name, text);
+                reviewIndex++;
+                scheduleNextReview();
+             }, delay);
+        }
+
+        addReviewToFeed("Sarah J.", "im so hungry looking at this food rn");
+        addReviewToFeed("BigMike", "Just paid for my meal with this. Clutccchhh.");
+        addReviewToFeed("Ash_Tray", "yooo just got the email! hype");
+        
+        scheduleNextReview();
+        // --- 4. USER INTERACTION ---
+        function postUserComment() {
+            const input = document.getElementById('userComment');
+            const text = input.value.trim();
+            if (text) {
+                addReviewToFeed("You", text, true);
+                input.value = "";
+            }
+        }
+
+        // --- 5. VIEWER COUNT FLUCTUATION ---
+        const viewerCountEl = document.getElementById('viewer-count');
+        let viewers = 842;
+
+        setInterval(() => {
+            const change = Math.floor(Math.random() * 15) - 5; 
+            viewers += change;
+            viewerCountEl.innerText = viewers;
+        }, 3000);
+
+        // --- 6. POPUP NOTIFICATION (Toast) ---
+        function showToast() {
+            const toast = document.getElementById('toast');
+            const toastText = document.getElementById('toast-text');
+            const cities = ["NY", "CA", "TX", "FL", "OH", "IL", "GA", "WA", "AZ"];
+            const city = cities[Math.floor(Math.random() * cities.length)];
+            const user = names[Math.floor(Math.random() * names.length)].split(' ')[0];
+            
+            toastText.innerHTML = `<strong>${user}</strong> (from ${city}) claimed <strong>$500</strong>`;
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 4000);
+        }
+
+        setInterval(showToast, 7000);
+
+    </script>
+</body>
+</html>
