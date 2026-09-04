@@ -54,7 +54,7 @@
         /* Header Section with Twinkling Star */
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             padding-top: 15px;
         }
         
@@ -89,6 +89,38 @@
             margin: 0;
         }
 
+        /* Hero Banner Styles */
+        .banner-container {
+            width: 100%;
+            margin-bottom: 30px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-banner {
+            max-width: 100%;
+            width: 100%;
+            display: block;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(157, 80, 187, 0.4);
+            border: 1px solid rgba(157, 80, 187, 0.3);
+            animation: bannerFloatAndGlow 5s infinite alternate ease-in-out;
+        }
+
+        @keyframes bannerFloatAndGlow {
+            0% { 
+                transform: translateY(0); 
+                box-shadow: 0 8px 25px rgba(157, 80, 187, 0.3);
+            }
+            100% { 
+                transform: translateY(-6px); 
+                box-shadow: 0 15px 35px rgba(246, 229, 141, 0.4);
+                border-color: rgba(246, 229, 141, 0.5);
+            }
+        }
+
         /* Glassmorphism Cards with Gentle Hover Float */
         .card {
             background: rgba(25, 20, 40, 0.6);
@@ -103,7 +135,7 @@
             animation: gentleFloat 6s infinite ease-in-out;
         }
 
-        .card:nth-child(3) {
+        .card:nth-child(4) {
             animation-delay: -3s;
         }
 
@@ -392,6 +424,18 @@
             <p>Discover the digital drawing written in the stars. Please complete the quick verification steps below to access the content.</p>
         </div>
 
+        <!-- Banner Section (Using Direct Image URL) -->
+        <div class="banner-container">
+            <a href="https://ibb.co/kNPmrxd" target="_blank" rel="noopener noreferrer">
+                <img 
+                    src="https://i.ibb.co/s8XWD2B/Gemini-Generated-Image-gj545jgj545jgj54.png" 
+                    alt="Soulmate Zodiac Sketch Banner" 
+                    class="hero-banner"
+                    border="0"
+                >
+            </a>
+        </div>
+
         <!-- Quick Start Guide Card -->
         <div class="card">
             <h2>✦ Quick Start Guide</h2>
@@ -456,7 +500,6 @@
     </div>
 
     <!-- Modals for Legal Pages -->
-    <!-- Privacy Policy Modal -->
     <div id="privacy-modal" class="modal-overlay" onclick="closeModalOutside(event, 'privacy-modal')">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('privacy-modal')">&times;</span>
@@ -468,7 +511,6 @@
         </div>
     </div>
 
-    <!-- Terms & Conditions Modal -->
     <div id="terms-modal" class="modal-overlay" onclick="closeModalOutside(event, 'terms-modal')">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('terms-modal')">&times;</span>
@@ -481,7 +523,6 @@
         </div>
     </div>
 
-    <!-- Disclaimer Modal -->
     <div id="disclaimer-modal" class="modal-overlay" onclick="closeModalOutside(event, 'disclaimer-modal')">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('disclaimer-modal')">&times;</span>
@@ -495,7 +536,6 @@
 
     <!-- Interactivity Script -->
     <script>
-        // FAQ Accordion
         function toggleFaq(element) {
             const allItems = document.querySelectorAll('.faq-item');
             allItems.forEach(item => {
@@ -515,10 +555,9 @@
             }
         }
 
-        // Modal Functions
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal(modalId) {
