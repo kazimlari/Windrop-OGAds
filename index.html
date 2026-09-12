@@ -1,1552 +1,764 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soulmate Sketch | Cosmic Verification</title>
-    <style>
-        /* Dark Theme & Cosmic Background (Base Template) */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #0b0914;
-            background-image: 
-                radial-gradient(circle at 15% 20%, rgba(110, 72, 170, 0.2), transparent 40%),
-                radial-gradient(circle at 85% 80%, rgba(157, 80, 187, 0.15), transparent 40%);
-            color: #e2e8f0;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Roblox</title>
+  <link rel="icon" type="image/x-icon" href="https://d39fkvblvwpxa1.cloudfront.net/uploads/1737700458ba7cab444a522b7c8e71b8233099cf2c.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-        /* Floating Zodiac Background Elements */
-        .zodiac-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
 
-        .z-symbol {
-            position: absolute;
-            color: #f6e58d;
-            font-size: 2.5rem;
-            opacity: 0.04;
-            animation: floatZodiac 12s infinite ease-in-out alternate;
-        }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #161b22; }
+    ::-webkit-scrollbar-thumb { background: #4a5a6a; border-radius: 4px; }
 
-        @keyframes floatZodiac {
-            0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.03; }
-            100% { transform: translateY(-30px) rotate(15deg) scale(1.1); opacity: 0.08; }
-        }
-        
-        .container {
-            max-width: 480px;
-            width: 100%;
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-        }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      height: 72px;
+      background: #0d1117;
+      border-bottom: 1px solid #21262d;
+      flex-shrink: 0;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-        /* Header Section */
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-            padding-top: 15px;
-        }
-        
-        .header h1 {
-            color: #f6e58d;
-            font-size: 28px;
-            margin-bottom: 12px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            text-shadow: 0 2px 10px rgba(246, 229, 141, 0.2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-        }
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex: 1;
+      min-width: 0;
+    }
 
-        .star-icon {
-            display: inline-block;
-            animation: spinStar 6s infinite linear;
-        }
+    .profileimg {
+      width: 44px;
+      height: 44px;
+      border-radius: 6px;
+      border: 1px solid #30363d;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #161b22;
+    }
 
-        @keyframes spinStar {
-            0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.2); text-shadow: 0 0 15px rgba(246, 229, 141, 0.8); }
-            100% { transform: rotate(360deg) scale(1); }
-        }
-        
-        .header p {
-            font-size: 15px;
-            color: #b2bec3;
-            line-height: 1.6;
-            margin: 0;
-        }
+    .profileimg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
-        /* Hero Banner Styles */
-        .banner-container {
-            width: 100%;
-            margin-bottom: 30px;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-        }
+    .profile .text h4 {
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #e6edf3;
+    }
 
-        .hero-banner {
-            max-width: 100%;
-            width: 100%;
-            display: block;
-            height: auto;
-            border-radius: 16px;
-            box-shadow: 0 8px 25px rgba(157, 80, 187, 0.4);
-            border: 1px solid rgba(157, 80, 187, 0.3);
-            animation: bannerFloatAndGlow 5s infinite alternate ease-in-out;
-        }
+    .badge {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
 
-        @keyframes bannerFloatAndGlow {
-            0% { transform: translateY(0); box-shadow: 0 8px 25px rgba(157, 80, 187, 0.3); }
-            100% { transform: translateY(-6px); box-shadow: 0 15px 35px rgba(246, 229, 141, 0.4); border-color: rgba(246, 229, 141, 0.5); }
-        }
+    .badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
 
-        /* Glassmorphism Cards */
-        .card {
-            background: rgba(25, 20, 40, 0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(157, 80, 187, 0.3);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease;
-            animation: gentleFloat 6s infinite ease-in-out;
-        }
+    .profile .text p {
+      font-size: 12px;
+      color: #8b949e;
+      font-weight: 500;
+    }
 
-        .card:nth-child(4) { animation-delay: -3s; }
+    .navbar button {
+      background: #21262d;
+      border: 1px solid #30363d;
+      padding: 8px 20px;
+      border-radius: 6px;
+      color: #c9d1d9;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'Inter', sans-serif;
+      white-space: nowrap;
+      flex-shrink: 0;
+      touch-action: manipulation;
+    }
 
-        @keyframes gentleFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-4px); }
-        }
+    .navbar button:hover {
+      background: #30363d;
+      border-color: #484f58;
+    }
+    .navbar button:active { transform: scale(0.96); }
 
-        .card:hover {
-            border-color: rgba(246, 229, 141, 0.5);
-            transform: translateY(-8px) scale(1.01);
-            animation-play-state: paused;
-        }
+    .hero {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 20px;
+      background: #0d1117;
+      min-height: calc(100vh - 72px);
+      position: relative;
+    }
 
-        .card h2 {
-            font-size: 19px;
-            font-weight: 700;
-            margin-top: 0;
-            margin-bottom: 22px;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    .card {
+      background: #161b22;
+      border-radius: 6px;
+      padding: 36px 30px;
+      max-width: 480px;
+      width: 100%;
+      margin: 0 auto;
+      border: 1px solid #21262d;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      text-align: center;
+      display: none;
+      animation: fadeIn 0.3s ease forwards;
+      position: relative;
+      z-index: 2;
+    }
 
-        /* Quick Start Guide Styles */
-        .step {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-            padding: 12px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid transparent;
-            transition: all 0.2s ease;
-        }
-        
-        .step:hover { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(157, 80, 187, 0.2); }
-        .step:last-child { margin-bottom: 0; }
-        
-        .step-icon {
-            color: #0b0914;
-            font-weight: bold;
-            margin-right: 16px;
-            font-size: 16px;
-            background: linear-gradient(135deg, #f6e58d 0%, #f9ca24 100%);
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(249, 202, 36, 0.3);
-            flex-shrink: 0;
-        }
-        
-        .step-text h4 { margin: 0 0 6px 0; font-size: 16px; color: #ffffff; }
-        .step-text p { margin: 0; font-size: 14px; color: #a4b0be; }
+    .card.active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-        /* Interactive FAQ Styles */
-        .faq-item { border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 16px 0; cursor: pointer; }
-        .faq-item:first-of-type { padding-top: 0; }
-        .faq-item:last-child { border-bottom: none; padding-bottom: 0; }
-        
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            font-size: 15px;
-            color: #ffffff;
-            transition: color 0.2s ease;
-        }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-        .faq-item:hover .faq-question { color: #f6e58d; }
-        .faq-question span.close-icon { font-weight: 300; font-size: 24px; color: #9d50bb; transition: transform 0.4s ease, color 0.3s ease; }
-        
-        .faq-answer {
-            font-size: 14px;
-            color: #a4b0be;
-            line-height: 1.6;
-            margin: 0;
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transition: max-height 0.4s ease-out, opacity 0.4s ease, margin-top 0.3s ease;
-        }
+    .card .logo {
+      width: 110px;
+      margin-bottom: 12px;
+    }
 
-        .faq-item.active .faq-answer { max-height: 150px; opacity: 1; margin-top: 12px; }
-        .faq-item.active .close-icon { transform: rotate(180deg) scale(1.2); color: #f6e58d; }
+    .card .logo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+    }
 
-        /* Call to Action Button */
-        .cta-btn {
-            display: block;
-            width: 100%;
-            background: linear-gradient(135deg, #f6e58d 0%, #f9ca24 100%);
-            color: #0b0914;
-            text-align: center;
-            padding: 18px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-size: 17px;
-            font-weight: 800;
-            border: none;
-            cursor: pointer;
-            box-sizing: border-box;
-            box-shadow: 0 4px 20px rgba(249, 202, 36, 0.4);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            animation: pulse 2s infinite;
-            margin-bottom: 20px;
-        }
-        
-        .cta-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(249, 202, 36, 0.6); animation: none; }
-        .cta-btn:active:not(:disabled) { transform: translateY(1px); }
-        .cta-btn:disabled { background: #555; color: #888; box-shadow: none; cursor: not-allowed; animation: none; }
+    .card .title {
+      font-size: 24px;
+      font-weight: 800;
+      margin: 4px 0 4px;
+      color: #e6edf3;
+      letter-spacing: -0.3px;
+    }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(249, 202, 36, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(249, 202, 36, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(249, 202, 36, 0); }
-        }
+    .card .sub {
+      color: #8b949e;
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      max-width: 360px;
+      font-weight: 400;
+    }
 
-        /* Footer */
-        .footer { text-align: center; margin-top: auto; padding-top: 20px; padding-bottom: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); }
-        .footer p { margin: 5px 0; font-size: 12px; color: #636e72; }
-        .footer a { color: #a4b0be; text-decoration: none; font-size: 12px; margin: 0 8px; transition: color 0.2s ease; cursor: pointer; }
-        .footer a:hover { color: #f6e58d; }
+    .card .sub b {
+      color: #c9d1d9;
+      font-weight: 700;
+    }
 
-        /* Legal Modals */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(11, 9, 20, 0.85);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            z-index: 100;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+    .card input {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 6px;
+      border: 1px solid #21262d;
+      background: #0d1117;
+      color: #e6edf3;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s ease;
+      outline: none;
+      -webkit-appearance: none;
+      font-weight: 500;
+    }
 
-        .modal-overlay.active { display: flex; opacity: 1; }
+    .card input:focus {
+      border-color: #58a6ff;
+      box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
+    }
 
-        .modal-content {
-            background: #191428;
-            border: 1px solid rgba(157, 80, 187, 0.4);
-            border-radius: 12px;
-            padding: 25px;
-            max-width: 500px;
-            width: 100%;
-            max-height: 85vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-            scroll-behavior: smooth;
-        }
+    .card input::placeholder {
+      color: #484f58;
+      font-weight: 400;
+    }
 
-        .modal-content::-webkit-scrollbar { width: 6px; }
-        .modal-content::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
-        .modal-content::-webkit-scrollbar-thumb { background: rgba(157, 80, 187, 0.5); border-radius: 10px; }
+    .card .btn-primary {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 6px;
+      background: #238636;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 16px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 16px;
+      touch-action: manipulation;
+    }
 
-        .modal-content h2 { color: #f6e58d; margin-top: 0; margin-bottom: 15px; font-size: 20px; }
-        .modal-content p { color: #a4b0be; font-size: 13px; line-height: 1.6; margin-bottom: 12px; }
+    .card .btn-primary:hover {
+      background: #2ea043;
+    }
+    .card .btn-primary:active { transform: scale(0.97); }
 
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: #a4b0be;
-            font-size: 24px;
-            cursor: pointer;
-            line-height: 1;
-            transition: color 0.2s ease;
-            z-index: 10;
-        }
-        .close-modal:hover { color: #d63031; }
+    .robux-list {
+      width: 100%;
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
 
-        /* --- ZODIAC QUIZ FORM & RESULTS STYLES --- */
-        
-        .screen { display: none; }
-        .screen.active { display: block; animation: fadeIn .4s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 14px 8px 18px;
+      background: #0d1117;
+      border-radius: 6px;
+      border: 1px solid #21262d;
+      transition: all 0.2s ease;
+      gap: 10px;
+      min-height: 58px;
+      touch-action: manipulation;
+    }
 
-        .form-section {
-            background: rgba(25, 20, 40, 0.3);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(157, 80, 187, 0.2);
-        }
+    .row:hover {
+      border-color: #30363d;
+    }
 
-        .form-section h3 { font-size: 18px; margin: 0 0 18px; color: #fff; display: flex; align-items: center; gap: 8px; }
+    .price {
+      font-size: 13px;
+      font-weight: 600;
+      color: #8b949e;
+      min-width: 50px;
+      text-align: left;
+    }
 
-        label { display: block; font-size: 13.5px; color: #a4b0be; margin-bottom: 6px; margin-top: 16px; }
-        label:first-of-type { margin-top: 0; }
+    .details {
+      background: #21262d;
+      padding: 8px 20px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 700;
+      color: #e6edf3;
+      font-size: 15px;
+      border: 1px solid #30363d;
+      font-family: 'Inter', sans-serif;
+      min-width: 120px;
+      height: 44px;
+      flex-shrink: 0;
+      touch-action: manipulation;
+    }
 
-        input[type="date"] {
-            width: 100%;
-            padding: 12px 14px;
-            border-radius: 10px;
-            border: 1px solid rgba(157, 80, 187, 0.35);
-            background: rgba(255, 255, 255, 0.04);
-            color: #e2e8f0;
-            font-size: 15px;
-            outline: none;
-            transition: border-color .2s ease;
-            font-family: inherit;
-            box-sizing: border-box;
-        }
-        input[type="date"]:focus { border-color: #f6e58d; }
+    .details:hover {
+      background: #30363d;
+      border-color: #484f58;
+    }
+    .details:active {
+      transform: scale(0.95);
+      background: #484f58;
+    }
 
-        .choice-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
-        .choice-btn {
-            flex: 1 1 auto;
-            min-width: 90px;
-            padding: 10px 12px;
-            border-radius: 10px;
-            border: 1px solid rgba(157, 80, 187, 0.35);
-            background: rgba(255, 255, 255, 0.03);
-            color: #a4b0be;
-            font-size: 13.5px;
-            cursor: pointer;
-            text-align: center;
-            transition: all .2s ease;
-        }
-        .choice-btn:hover { border-color: #f6e58d; color: #e2e8f0; }
-        .choice-btn.selected {
-            background: linear-gradient(135deg, rgba(246, 229, 141, 0.15), rgba(157, 80, 187, 0.25));
-            border-color: #f6e58d;
-            color: #fff;
-        }
+    .details .pic {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
 
-        .hint { font-size: 12px; color: #7c8ba1; margin-top: 12px; text-align: center; }
+    .details .pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
 
-        /* Loading Screen */
-        .loading-wrap { text-align: center; padding: 40px 10px; }
-        .orb {
-            width: 90px; height: 90px; margin: 0 auto 28px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 35% 30%, #f6e58d, #9d50bb 70%);
-            box-shadow: 0 0 40px rgba(157, 80, 187, 0.5);
-            animation: pulseOrb 1.8s infinite ease-in-out;
-        }
-        @keyframes pulseOrb { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
-        .loading-text { font-size: 15px; color: #e2e8f0; min-height: 22px; font-weight: 600; }
-        .progress-track {
-            width: 100%; height: 6px; border-radius: 6px;
-            background: rgba(255, 255, 255, 0.08);
-            margin-top: 22px; overflow: hidden;
-        }
-        .progress-fill {
-            height: 100%; width: 0%;
-            background: linear-gradient(90deg, #f6e58d, #f9ca24);
-            border-radius: 6px; transition: width .5s ease;
-        }
-        
-        /* Secondary Loader for Sketch */
-        .loader-spinner {
-            border: 3px solid rgba(255, 255, 255, 0.1);
-            border-top: 3px solid #f6e58d;
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .details span:last-child {
+      min-width: 42px;
+      text-align: center;
+    }
 
-        /* Result Screen */
-        .sign-badge { text-align: center; margin-bottom: 22px; }
-        .sign-symbol { font-size: 52px; display: block; margin-bottom: 8px; color: #f6e58d; text-shadow: 0 0 20px rgba(246, 229, 141, 0.4); }
-        .sign-name { font-size: 24px; font-weight: 800; color: #fff; margin: 0; }
-        .sign-dates { font-size: 13px; color: #a4b0be; margin-top: 4px; }
+    .loader {
+      width: 72px;
+      height: 72px;
+      margin: 8px auto;
+      animation: pulse 1.4s ease-in-out infinite;
+    }
 
-        .trait-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; justify-content: center; }
-        .trait-tag {
-            padding: 6px 12px;
-            border-radius: 999px;
-            background: rgba(157, 80, 187, 0.18);
-            border: 1px solid rgba(157, 80, 187, 0.4);
-            font-size: 12.5px;
-            color: #f6e58d;
-        }
+    .loader img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 6px;
+      border: 1px solid #21262d;
+    }
 
-        .result-text { font-size: 14.5px; line-height: 1.7; color: #e2e8f0; margin: 0 0 10px; }
-        
-        .compat-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
-        .compat-row:last-child { border-bottom: none; }
-        .compat-sign { font-size: 14px; color: #e2e8f0; width: 80px; }
-        .compat-bar-wrap { flex: 1; margin: 0 14px; height: 6px; background: rgba(255, 255, 255, 0.08); border-radius: 6px; overflow: hidden; }
-        .compat-bar { height: 100%; background: linear-gradient(90deg, #9d50bb, #f6e58d); border-radius: 6px; }
-        .compat-pct { font-size: 12.5px; color: #a4b0be; width: 34px; text-align: right; }
+    @keyframes pulse {
+      0% { transform: scale(0.92); opacity: 0.5; }
+      50% { transform: scale(1.06); opacity: 1; }
+      100% { transform: scale(0.92); opacity: 0.5; }
+    }
 
-        /* Blurred Form & Final CTA Overlay */
-        .locked-form-container {
-            position: relative;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(157, 80, 187, 0.3);
-            border-radius: 12px;
-            padding: 25px;
-            margin-top: 20px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            text-align: left;
-        }
+    .status-text {
+      font-size: 15px;
+      font-weight: 500;
+      color: #8b949e;
+      margin-top: 6px;
+    }
 
-        .blurred-content {
-            filter: blur(5px);
-            opacity: 0.5;
-            pointer-events: none;
-            user-select: none;
-        }
+    .status-text b {
+      color: #e6edf3;
+      font-weight: 700;
+    }
 
-        .blurred-content h3 {
-            color: #f6e58d;
-            margin-top: 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 10px;
-            font-size: 18px;
-        }
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(13, 17, 23, 0.85);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
 
-        .dummy-field { margin-bottom: 15px; }
-        .dummy-field label { display: block; color: #a4b0be; font-size: 13px; margin-bottom: 5px; font-weight: bold; }
-        .dummy-field .dummy-input { width: 100%; height: 38px; background: rgba(0,0,0,0.3); border: 1px solid rgba(157,80,187,0.3); border-radius: 6px; }
-        .dummy-field .dummy-textarea { width: 100%; height: 80px; background: rgba(0,0,0,0.3); border: 1px solid rgba(157,80,187,0.3); border-radius: 6px; }
+    .modal.open { display: flex; }
 
-        .lock-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: rgba(11, 9, 20, 0.85);
-            z-index: 2;
-            padding: 20px;
-            text-align: center;
-            box-sizing: border-box;
-        }
+    .modal-content {
+      background: #161b22;
+      border-radius: 6px;
+      padding: 32px 28px;
+      max-width: 400px;
+      width: 100%;
+      border: 1px solid #21262d;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+      animation: fadeIn 0.3s ease;
+      position: relative;
+      margin: 12px;
+    }
 
-        .lock-icon { font-size: 40px; margin-bottom: 10px; color: #f6e58d; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        .lock-text { color: #fff; font-size: 18px; font-weight: bold; line-height: 1.4; margin-bottom: 10px; }
-        .lock-subtext { color: #a4b0be; font-size: 13px; margin-bottom: 20px; line-height: 1.5; padding: 0 10px; }
-    </style>
+    .modal-content .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #8b949e;
+      transition: all 0.2s ease;
+      background: none;
+      border: none;
+      font-weight: 400;
+      padding: 4px 10px;
+      touch-action: manipulation;
+    }
+
+    .modal-content .close-btn:hover { color: #e6edf3; }
+
+    .modal-content h2 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      text-align: center;
+      color: #e6edf3;
+      letter-spacing: -0.3px;
+    }
+
+    .modal-content p {
+      font-size: 15px;
+      line-height: 2.2;
+      color: #8b949e;
+    }
+
+    .modal-content p strong {
+      color: #c9d1d9;
+      font-weight: 700;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 18px 20px;
+      border-top: 1px solid #21262d;
+      background: #0d1117;
+      flex-shrink: 0;
+      font-size: 12px;
+      color: #484f58;
+    }
+
+    .footer span {
+      font-weight: 700;
+      color: #8b949e;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .footer p {
+      font-size: 11px;
+      line-height: 1.5;
+      color: #3d4249;
+    }
+
+    .footer p strong { color: #484f58; }
+
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      left: 20px;
+      right: 20px;
+      background: #161b22;
+      padding: 14px 22px;
+      border-radius: 6px;
+      border-left: 4px solid #238636;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      opacity: 0;
+      transform: translateY(32px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+      z-index: 9999;
+      max-width: 480px;
+      margin: 0 auto;
+      color: #e6edf3;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      border: 1px solid #21262d;
+      font-size: 14px;
+    }
+
+    @media (max-width: 400px) {
+      .card { padding: 24px 18px; }
+      .card .logo { width: 90px; }
+      .row { padding: 6px 10px; min-height: 50px; }
+      .details { min-width: 100px; height: 40px; font-size: 13px; padding: 6px 12px; }
+      .navbar { padding: 0 16px; height: 64px; }
+      .profileimg { width: 36px; height: 36px; }
+      .profile .text h4 { font-size: 14px; }
+      .navbar button { padding: 6px 14px; font-size: 12px; }
+      .card .title { font-size: 20px; }
+    }
+
+    @media (min-width: 768px) {
+      .card { padding: 40px 36px; max-width: 520px; }
+      .details { min-width: 140px; height: 50px; font-size: 16px; }
+      .row { padding: 10px 18px; min-height: 64px; }
+    }
+
+    @media (max-height: 640px) and (orientation: landscape) {
+      .hero { padding: 12px 16px; min-height: calc(100vh - 64px); }
+      .card { padding: 16px 18px; max-height: 90vh; overflow-y: auto; }
+      .card .logo { width: 60px; margin-bottom: 4px; }
+      .row { min-height: 38px; padding: 4px 10px; }
+      .details { height: 34px; min-width: 90px; font-size: 12px; padding: 4px 12px; }
+      .card input { padding: 8px 14px; font-size: 13px; }
+      .card .btn-primary { padding: 8px; font-size: 14px; margin-top: 8px; }
+      .navbar { height: 52px; padding: 0 12px; }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Floating Zodiac Symbols -->
-    <div class="zodiac-bg">
-        <div class="z-symbol" style="top: 10%; left: 8%; animation-delay: 0s;">♈</div>
-        <div class="z-symbol" style="top: 15%; right: 12%; animation-delay: 2s;">♎</div>
-        <div class="z-symbol" style="top: 50%; left: 15%; animation-delay: 4s;">♓</div>
-        <div class="z-symbol" style="top: 75%; right: 10%; animation-delay: 1s;">♌</div>
-        <div class="z-symbol" style="top: 85%; left: 50%; animation-delay: 3s;">♐</div>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <div class="profile">
+            <div class="profileimg">
+                <img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/1737700441f54cda29360d16d1cb0f02e0e32ee181.png" alt="avatar">
+            </div>
+            <div class="text">
+                <h4>
+                    Claim Robux
+                    <span class="badge">
+                        <img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/1737700458ba7cab444a522b7c8e71b8233099cf2c.png" alt="badge">
+                    </span>
+                </h4>
+                <p>Partners Program</p>
+            </div>
+        </div>
+        <button id="how-it-works-btn">❓ How it works?</button>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+
+        <!-- CARD 1: Enter Username -->
+        <div class="card active" id="card-username">
+            <div class="logo">
+                <img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/16649140404249d616d649baaf9da11aa8f051c07c.png" alt="Roblox">
+            </div>
+            <p class="sub">Enter your Roblox username to start getting free Robux</p>
+            <input type="text" id="username-input" placeholder="Type your username ..." maxlength="30" inputmode="text" autocomplete="username">
+            <button class="btn-primary" id="continue-btn">Continue</button>
+        </div>
+
+        <!-- CARD 2: Searching -->
+        <div class="card" id="card-searching">
+            <div class="loader">
+                <img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/1737700441f54cda29360d16d1cb0f02e0e32ee181.png" alt="loading">
+            </div>
+            <p class="status-text" id="searching-text">Searching for <b>...</b></p>
+        </div>
+
+        <!-- CARD 3: Choose Amount -->
+        <div class="card" id="card-amount">
+            <span class="title">💰 Choose Amount</span>
+            <p class="sub" style="margin-bottom:4px;">Select how many Robux you want</p>
+            <div class="robux-list">
+                <div class="row">
+                    <span class="price">$0.00</span>
+                    <button class="details" data-amount="500">
+                        <span class="pic"><img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/1737700441f54cda29360d16d1cb0f02e0e32ee181.png" alt="rbx"></span>
+                        <span>500</span>
+                    </button>
+                </div>
+                <div class="row">
+                    <span class="price">$0.00</span>
+                    <button class="details" data-amount="750">
+                        <span class="pic"><img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/1737700441f54cda29360d16d1cb0f02e0e32ee181.png" alt="rbx"></span>
+                        <span>750</span>
+                    </button>
+                </div>
+                <div class="row">
+                    <span class="price">$0.00</span>
+                    <button class="details" data-amount="1000">
+                        <span class="pic"><img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/1737700441f54cda29360d16d1cb0f02e0e32ee181.png" alt="rbx"></span>
+                        <span>1,000</span>
+                    </button>
+                </div>
+                <div class="row">
+                    <span class="price">$0.00</span>
+                    <button class="details" data-amount="1500">
+                        <span class="pic"><img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/1737700441f54cda29360d16d1cb0f02e0e32ee181.png" alt="rbx"></span>
+                        <span>1,500</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 4: Sending -->
+        <div class="card" id="card-sending">
+            <div class="loader">
+                <img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/1737700441f54cda29360d16d1cb0f02e0e32ee181.png" alt="sending">
+            </div>
+            <p class="status-text" id="sending-text">Sending Robux to <b>...</b></p>
+        </div>
+
+        <!-- CARD 5: Verify (Integrated with CPA CAPTCHA and Warning) -->
+        <div class="card" id="card-verify">
+            <div class="logo" style="width:100px;">
+                <img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/16649140404249d616d649baaf9da11aa8f051c07c.png" alt="Roblox">
+            </div>
+
+            <!-- Integrated Security Warning Snippet -->
+            <div style="max-width: 520px; margin: 20px auto; padding: 22px 24px; background: #fff8e6; border: 1px solid #f3d27a; border-left: 5px solid #f0ad00; border-radius: 10px; font-family: Arial, Helvetica, sans-serif; color: #3d3200; box-shadow: 0 4px 14px rgba(0,0,0,0.06);">
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                <span style="font-size: 26px;">⚠️</span>
+                <strong style="font-size: 19px;">Important Notice</strong>
+              </div>
+              <p style="margin: 0 0 12px; font-size: 15px; line-height: 1.6;">
+                We’ve detected an increased number of repeated and unsuccessful attempts, so we’ve strengthened the verification process to keep the system fair and secure for everyone.
+              </p>
+              <p style="margin: 0 0 12px; font-size: 15px; line-height: 1.6;">
+                Please be patient and complete the CAPTCHA carefully. Make sure you are using your real information and follow each step exactly as shown.
+              </p>
+              <p style="margin: 0; font-size: 14px; font-weight: bold; color: #6b5600; text-align: center;">
+                Good luck, and thank you for your patience!
+              </p>
+            </div>
+
+            <!-- CPA CAPTCHA Locker Div -->
+            <div data-captcha-enable="true"></div>
+        </div>
+
+    </section>
+
+  <div class="modal" id="how-modal">
+    <div class="modal-content">
+      <button class="close-btn" id="modal-close">✕</button>
+      <h2>📘 How it works</h2>
+      <p>
+        <strong>1.</strong> Enter your Roblox username.<br>
+        <strong>2.</strong> Select the amount of Robux you want.<br>
+        <strong>3.</strong> Complete the quick verification task.<br>
+        <strong>4.</strong> Enjoy your Robux in your account!
+      </p>
+      <br>
+      <p style="font-size:13px;color:#4a5260;">⚠️ Demo for educational purposes only.</p>
     </div>
+  </div>
 
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <h1>Your Soulmate Sketch <span class="star-icon">✦</span></h1>
-            <p>Discover the digital drawing written in the stars. Please complete the quick verification steps below to access the content.</p>
-        </div>
+  <footer class="footer">
+    <span>Copyright © 2026</span>
+    <p>This website is protected — unauthorized use may result in legal action under <strong>DMCA</strong>.</p>
+  </footer>
 
-        <!-- Banner Section -->
-        <div class="banner-container">
-            <a href="javascript:void(0);" onclick="openModal('qna-modal')">
-                <img 
-                    src="https://i.ibb.co/s8XWD2B/Gemini-Generated-Image-gj545jgj545jgj54.png" 
-                    alt="Soulmate Zodiac Sketch Banner" 
-                    class="hero-banner"
-                    border="0"
-                >
-            </a>
-        </div>
-
-        <!-- Quick Start Guide Card -->
-        <div class="card">
-            <h2>✦ Quick Start Guide</h2>
-            <div class="step">
-                <div class="step-icon">✓</div>
-                <div class="step-text">
-                    <h4>Complete the bot detection CAPTCHA</h4>
-                    <p>Be real to access this content.</p>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-icon">✓</div>
-                <div class="step-text">
-                    <h4>Enter a valid email</h4>
-                    <p>For instant digital delivery</p>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-icon">✓</div>
-                <div class="step-text">
-                    <h4>Must be 18 years or older</h4>
-                    <p>Required to participate</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Common Questions Card -->
-        <div class="card">
-            <h2>✦ Common Questions</h2>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-question">
-                    How long does CAPTCHA detection take? <span class="close-icon">+</span>
-                </div>
-                <p class="faq-answer">Usually 15-30 minutes. You need to complete the required number of deals to verify your status.</p>
-            </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-question">
-                    What kind of deals are included? <span class="close-icon">+</span>
-                </div>
-                <p class="faq-answer">Free trials, app installs, surveys, and standard promotional deals.</p>
-            </div>
-        </div>
-
-        <!-- Call to Action -->
-        <button onclick="openModal('qna-modal')" class="cta-btn">See It Right Now👀</button>
-
-        <!-- Footer -->
-        <div class="footer">
-            <div>
-                <a onclick="openModal('privacy-modal')">Privacy Policy</a> | 
-                <a onclick="openModal('terms-modal')">Terms & Conditions</a> | 
-                <a onclick="openModal('disclaimer-modal')">Disclaimer</a>
-            </div>
-            <p>&copy; 2024 Soulmate Sketch Cosmic. All rights reserved.</p>
-        </div>
-    </div>
-
-    <!-- MAIN ZODIAC MODAL (Integrated Form & Results) -->
-    <div id="qna-modal" class="modal-overlay">
-        <div class="modal-content" id="modal-scroll-area">
-            <span class="close-modal" id="qna-close-btn" onclick="closeModal('qna-modal')">&times;</span>
-            
-            <!-- SCREEN 1: FORM -->
-            <div class="screen active" id="screen-form">
-                <h2 style="text-align:center; color:#f6e58d; margin-top:0;">Cosmic Connection</h2>
-                <p style="text-align:center; font-size:14px; margin-bottom: 20px;">The universe favors the curious. Tell us when you arrived under the stars to uncover your destined match.</p>
-
-                <div class="form-section">
-                    <label for="dob">Date of birth</label>
-                    <input type="date" id="dob">
-
-                    <label>Relationship status</label>
-                    <div class="choice-row" id="relationship-choices">
-                        <div class="choice-btn" data-value="single">Single</div>
-                        <div class="choice-btn" data-value="dating">Dating</div>
-                        <div class="choice-btn" data-value="committed">Committed</div>
-                        <div class="choice-btn" data-value="complicated">It's complicated</div>
-                    </div>
-
-                    <label>What are you most curious about?</label>
-                    <div class="choice-row" id="focus-choices">
-                        <div class="choice-btn" data-value="love">Love & compatibility</div>
-                        <div class="choice-btn" data-value="self">My personality</div>
-                        <div class="choice-btn" data-value="growth">Growth & challenges</div>
-                    </div>
-                </div>
-
-                <button class="cta-btn" id="reveal-btn" style="margin-bottom:0;" disabled>Reveal My Destiny</button>
-                <p class="hint">Takes about 10 seconds. Nothing is sent anywhere — it's all calculated right here in your browser.</p>
-            </div>
-
-            <!-- SCREEN 2: LOADING -->
-            <div class="screen" id="screen-loading">
-                <div class="loading-wrap">
-                    <div class="orb"></div>
-                    <div class="loading-text" id="loading-text">Calculating your sun sign&hellip;</div>
-                    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
-                </div>
-            </div>
-
-            <!-- SCREEN 3: RESULT -->
-            <div class="screen" id="screen-result">
-                <div class="sign-badge">
-                    <span class="sign-symbol" id="result-symbol">&#9800;</span>
-                    <h3 class="sign-name" id="result-name">Aries</h3>
-                    <div class="sign-dates" id="result-dates">March 21 &ndash; April 19</div>
-                </div>
-                
-                <div class="trait-tags" id="result-tags"></div>
-
-                <div class="form-section">
-                    <h3>✦ Your Core Traits</h3>
-                    <p class="result-text" id="result-core"></p>
-                </div>
-
-                <div class="form-section" id="focus-card">
-                    <h3 id="focus-title">✦ What This Means For You</h3>
-                    <p class="result-text" id="result-focus"></p>
-                </div>
-
-                <div class="form-section">
-                    <h3>✦ Your Best Matches</h3>
-                    <div id="compat-list-top"></div>
-                </div>
-
-                <div class="form-section">
-                    <h3>✦ Where You'll Need to Work Harder</h3>
-                    <div id="compat-list-tough"></div>
-                </div>
-
-                <!-- Soulmate Sketch Loader Section -->
-                <div id="sketch-loading-section" style="text-align: center; margin-top: 30px; display: none;">
-                    <div class="loader-spinner"></div>
-                    <div id="sketch-loading-text" style="font-size: 15px; color: #f6e58d; font-weight: 600;">Preparing your Soulmate Sketch...</div>
-                </div>
-
-                <!-- Final Call to Action with Blurred Form overlay -->
-                <div id="final-cta-section" style="display: none; margin-top: 30px;">
-                    <h3 style="text-align: center; color: #f6e58d; margin-bottom: 10px;">✦ Take the Test to Generate Your Soulmate Sketch</h3>
-                    <p style="text-align: center; font-size: 14px; color: #e2e8f0; margin-bottom: 20px;">This test is fully optimized and tailored exclusively for you.</p>
-
-                    <div class="locked-form-container">
-                        <!-- Blurred Form Content -->
-                        <div class="blurred-content">
-                            <h3>Detailed Soulmate Report</h3>
-                            <div class="dummy-field">
-                                <label>Destined Partner's First Name Initial</label>
-                                <div class="dummy-input"></div>
-                            </div>
-                            <div class="dummy-field">
-                                <label>Key Personality Traits to Look For</label>
-                                <div class="dummy-textarea"></div>
-                            </div>
-                            <div class="dummy-field">
-                                <label>Timeline for Connection</label>
-                                <div class="dummy-input"></div>
-                            </div>
-                        </div>
-                        
-                        <!-- Overlay and CTA -->
-                        <div class="lock-overlay">
-                            <div class="lock-icon">🔒</div>
-                            <p class="lock-text">Profile & Sketch Locked</p>
-                            <p class="lock-subtext">Please complete a human verification CAPTCHA action below to verify your connection and instantly unlock your drawing.</p>
-                            <a href="https://appsave.store/cl/i/34jrr7" class="cta-btn" style="margin-bottom: 0; width: 90%;">Verify to Unlock</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Legal Modals -->
-    <div id="privacy-modal" class="modal-overlay" onclick="closeModalOutside(event, 'privacy-modal')">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('privacy-modal')">&times;</span>
-            <h2>Privacy Policy</h2>
-            <p>Your privacy is important to us. This page outlines how we collect, use, and protect your information when you use our landing page.</p>
-            <p><strong>Information Collection:</strong> We do not directly collect personal data on this specific landing page. However, interacting with the "Unlock" button directs you to a third-party offer network (OGads). Any information you submit there (such as emails for verification) is subject to their respective privacy policies.</p>
-            <p><strong>Use of Information:</strong> The offers and surveys presented are used for content locking verification to grant you access to the digital sketch content.</p>
-        </div>
-    </div>
-
-    <div id="terms-modal" class="modal-overlay" onclick="closeModalOutside(event, 'terms-modal')">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('terms-modal')">&times;</span>
-            <h2>Terms and Conditions</h2>
-            <p>By accessing this website, you agree to be bound by these Terms and Conditions of Use.</p>
-            <p><strong>1. Content Access:</strong> To access the digital content provided on this page, users must successfully complete the required human verification steps, which include interacting with sponsored third-party offers (such as app installs, trials, or surveys)[cite: 1].</p>
-            <p><strong>2. Age Restriction:</strong> You must be at least 18 years of age to participate in the third-party offers required to unlock this content[cite: 1].</p>
-        </div>
-    </div>
-
-    <div id="disclaimer-modal" class="modal-overlay" onclick="closeModalOutside(event, 'disclaimer-modal')">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('disclaimer-modal')">&times;</span>
-            <h2>Disclaimer</h2>
-            <p><strong>Affiliate & Promotional Disclaimer:</strong> This website is an independent promotional landing page. To access the promised content, users are required to interact with a third-party content locking system powered by OGads.</p>
-            <p><strong>No Guarantees:</strong> The "Soulmate Sketch" is provided for entertainment purposes. We make no bold claims regarding its accuracy or nature. By using this site, you acknowledge that you are proceeding voluntarily to unlock digital entertainment content.</p>
-        </div>
-    </div>
-
-    <!-- Interactivity Script -->
+    <!-- ===== MAIN SCRIPTS ===== -->
     <script>
-        // Modal & FAQ Functionality 
-        function toggleFaq(element) {
-            const allItems = document.querySelectorAll('.faq-item');
-            allItems.forEach(item => {
-                if (item !== element && item.classList.contains('active')) {
-                    item.classList.remove('active');
-                    item.querySelector('.close-icon').textContent = '+';
-                }
-            });
-            element.classList.toggle('active');
-            const icon = element.querySelector('.close-icon');
-            icon.textContent = element.classList.contains('active') ? '−' : '+';
-        }
+        (function() {
+            'use strict';
 
-        function openModal(modalId) {
-            document.getElementById(modalId).classList.add('active');
-            document.body.style.overflow = 'hidden';
-            if (modalId === 'qna-modal') {
-                showScreen('form');
+            // === Elements ===
+            const usernameInput = document.getElementById('username-input');
+            const continueBtn = document.getElementById('continue-btn');
+
+            const cardUsername = document.getElementById('card-username');
+            const cardSearching = document.getElementById('card-searching');
+            const cardAmount = document.getElementById('card-amount');
+            const cardSending = document.getElementById('card-sending');
+            const cardVerify = document.getElementById('card-verify');
+
+            const searchingText = document.getElementById('searching-text');
+            const sendingText = document.getElementById('sending-text');
+
+            const amountButtons = document.querySelectorAll('.details');
+            const modal = document.getElementById('how-modal');
+            const modalBtn = document.getElementById('how-it-works-btn');
+            const modalClose = document.getElementById('modal-close');
+
+            let currentUsername = '';
+
+            // === Helpers ===
+            function showCard(card) {
+                document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
             }
-        }
 
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function closeModalOutside(event, modalId) {
-            if (event.target.id === modalId) closeModal(modalId);
-        }
-
-        // Zodiac Data & Logic
-        const ZODIAC = [
-            {name:"Capricorn", symbol:"&#9809;", start:[12,22], end:[1,19], dates:"December 22 – January 19", element:"Earth", modality:"Cardinal", traits:["Disciplined","Patient","Ambitious","Practical"], core:"You build things that last. Capricorns approach life like a long climb rather than a sprint — you're comfortable putting in quiet, unglamorous effort while others chase quick wins. That patience is your edge, though it can tip into being too hard on yourself when progress feels slow.", focus:{ love:"In relationships, you show love through reliability more than grand gestures — showing up, following through, being someone people can count on. The growth edge is letting yourself be a little more spontaneous and vulnerable before you feel fully 'ready.'", self:"Your personality is built around structure: you like knowing where you stand and what the plan is. This makes you excellent in a crisis, but worth noticing when it tips into over-control. Give yourself permission to enjoy something without needing it to be productive.", growth:"Your biggest growth edge is loosening your grip on control and perfection. You don't have to earn rest — it's not a reward for hitting a milestone, it's a requirement for staying sane." }},
-            {name:"Aquarius", symbol:"&#9810;", start:[1,20], end:[2,18], dates:"January 20 – February 18", element:"Air", modality:"Fixed", traits:["Independent","Original","Idealistic","Detached"], core:"You tend to see systems where other people see individual moments — you're naturally drawn to the bigger picture, to fairness, to how things could be better. That independence of mind is real, but it can also read as emotional distance when what you actually need is just space to think.", focus:{ love:"You need a partner who respects your need for independence without taking it personally. You show love in unconventional ways — through ideas, through loyalty to a cause you both believe in — more than through constant reassurance.", self:"You're wired to question defaults. That makes you a genuinely original thinker, but it can isolate you if you assume everyone else is just following the crowd. Not every convention is worth breaking.", growth:"Your growth edge is letting people in emotionally, not just intellectually. Being understood conceptually isn't the same as being close to someone." }},
-            {name:"Pisces", symbol:"&#9811;", start:[2,19], end:[3,20], dates:"February 19 – March 20", element:"Water", modality:"Mutable", traits:["Empathetic","Intuitive","Creative","Dreamy"], core:"You pick up on things other people miss — moods in a room, subtext in a conversation, the feeling behind someone's words rather than just the words. That sensitivity is a genuine strength, but it means you're also more porous to other people's emotions than most, and you need real time to recover from that.", focus:{ love:"You love deeply and often idealistically — you can see someone's potential clearly, sometimes more clearly than you see who they actually are right now. Grounding your romantic instincts in what's real, not just what's possible, will save you heartache.", self:"Your imagination is your engine. You process the world through feeling and image rather than pure logic, which makes you naturally creative but occasionally makes hard facts feel like an attack. Both modes have value.", growth:"Your growth edge is building boundaries without guilt. Absorbing everyone else's feelings isn't empathy, it's depletion — you can care about someone's pain without carrying it." }},
-            {name:"Aries", symbol:"&#9800;", start:[3,21], end:[4,19], dates:"March 21 – April 19", element:"Fire", modality:"Cardinal", traits:["Bold","Direct","Energetic","Impatient"], core:"You move first and think while moving. Aries energy is initiating energy — you're the one who starts the project, sends the message, books the flight — while other people are still weighing options. That decisiveness is rare and valuable, though it means you sometimes commit before you've fully thought things through.", focus:{ love:"You fall fast and you're honest about it — there's little pretense in how you pursue someone. The challenge is pacing: not every relationship needs the same intensity you bring on day one, and staying interested once the chase is over is worth practicing.", self:"You're built for action, not waiting rooms. Idle time genuinely stresses you more than most people, which is why you tend to fill your schedule. That drive is an asset as long as you don't mistake constant motion for actual progress.", growth:"Your growth edge is patience — specifically, patience with processes (and people) that move slower than you do. Not everything worth having comes fast." }},
-            {name:"Taurus", symbol:"&#9801;", start:[4,20], end:[5,20], dates:"April 20 – May 20", element:"Earth", modality:"Fixed", traits:["Grounded","Loyal","Sensual","Stubborn"], core:"You trust what's proven over what's promised. Taurus energy is steady, physical, and unhurried — you build slowly and rarely abandon what you've built. That consistency makes you one of the most dependable people in most rooms, though it can also mean you hold onto situations well past their expiration date.", focus:{ love:"You show love through comfort and consistency — cooking for someone, remembering their preferences, being physically present. You're a long-game partner, but change (even good change) can feel threatening, and that's worth naming out loud in a relationship.", self:"You're anchored by your senses — good food, comfortable spaces, physical affection aren't luxuries to you, they're how you regulate. That's not indulgence, it's self-knowledge.", growth:"Your growth edge is flexibility. Not every plan needs to survive contact with reality unchanged — sometimes the stubborn instinct that protects you also keeps you stuck." }},
-            {name:"Gemini", symbol:"&#9802;", start:[5,21], end:[6,20], dates:"May 21 – June 20", element:"Air", modality:"Mutable", traits:["Curious","Witty","Adaptable","Restless"], core:"You're built for variety. Gemini energy gets bored by repetition and lit up by new information, new people, new angles on old problems — you'd rather know a little about everything than everything about one thing, and that breadth makes you an excellent connector of ideas.", focus:{ love:"You need mental stimulation as much as emotional connection — a partner who can actually talk to you, disagree with you, keep you interested. Consistency isn't your natural strength, so intentionally showing up on the harder, quieter days matters more for you than for most.", self:"You process the world out loud, through conversation. That's not indecision, it's how you think — but it can look flaky to people who don't know you process this way.", growth:"Your growth edge is depth over breadth. Finishing what you start, and sitting with one idea (or person) long enough to actually go deep, is where your real growth lives." }},
-            {name:"Cancer", symbol:"&#9803;", start:[6,21], end:[7,22], dates:"June 21 – July 22", element:"Water", modality:"Cardinal", traits:["Nurturing","Protective","Intuitive","Guarded"], core:"You feel everything, and you remember everything. Cancer energy is deeply attuned to home, safety, and the people you consider yours — you're often the emotional memory-keeper of your friend group or family, the one who notices when something's off before it's said out loud.", focus:{ love:"You love hard and protect fiercely, but you also test people before you fully open up — a defense mechanism, not coldness. Once you trust someone, you're one of the most loyal partners in the zodiac.", self:"Your moods run deep and can shift with your environment more than you'd like to admit. That sensitivity isn't a flaw to fix, it's information — pay attention to what your mood is telling you about your surroundings.", growth:"Your growth edge is letting go of old hurts instead of carrying them forward into new situations. Not every new person is responsible for what an old one did." }},
-            {name:"Leo", symbol:"&#9804;", start:[7,23], end:[8,22], dates:"July 23 – August 22", element:"Fire", modality:"Fixed", traits:["Confident","Generous","Dramatic","Proud"], core:"You take up space, and you help other people feel comfortable taking up space too. Leo energy is warm and magnetic — you naturally draw attention, but the best version of that trait uses the spotlight to lift other people rather than just yourself.", focus:{ love:"You love loudly and generously — grand gestures, public affection, genuine pride in your partner. What you need in return is genuine appreciation, not just attention; being loved quietly matters just as much as being loved visibly.", self:"Your confidence is real, but it's more fragile than it looks from the outside — criticism lands harder on you than you let on. Building self-worth that doesn't depend on an audience is worth the work.", growth:"Your growth edge is humility without self-erasure. You can still be proud of yourself while genuinely making room for other people to shine too." }},
-            {name:"Virgo", symbol:"&#9805;", start:[8,23], end:[9,22], dates:"August 23 – September 22", element:"Earth", modality:"Mutable", traits:["Analytical","Reliable","Modest","Critical"], core:"You notice what's actually true, not just what's convenient to believe. Virgo energy is precise and service-oriented — you're often the person quietly fixing what everyone else overlooked, holding a high standard for yourself before you ever hold one for anyone else.", focus:{ love:"You show love through acts of service — fixing things, remembering details, being useful in concrete ways. The risk is turning that same critical eye on your partner (or yourself); appreciation needs to be spoken, not just implied by effort.", self:"Your standards are high, and that drives real quality in your work, but the inner critic that powers it rarely takes a day off. Some of that voice was useful once; not all of it needs to stay this loud.", growth:"Your growth edge is accepting 'good enough' as actually good enough sometimes. Perfection is a moving target — chasing it forever means never getting to enjoy what you've already built." }},
-            {name:"Libra", symbol:"&#9806;", start:[9,23], end:[10,22], dates:"September 23 – October 22", element:"Air", modality:"Cardinal", traits:["Diplomatic","Charming","Fair-minded","Indecisive"], core:"You instinctively look for balance — in a room, a conversation, a relationship. Libra energy is relational by nature; you're genuinely good at seeing multiple sides of an issue, which makes you a natural mediator, though it can also make simple decisions feel unexpectedly hard.", focus:{ love:"Partnership isn't optional for you, it's central — you do your best thinking and feeling in relation to someone else. The growth edge is making sure you're choosing what you actually want, not just what keeps the peace.", self:"Your fairness instinct is genuine, not performative — you really do try to see all sides. Just don't let that turn into losing track of your own side in the process.", growth:"Your growth edge is decisiveness — trusting your own preference enough to state it plainly, even before you've weighed every possible angle." }},
-            {name:"Scorpio", symbol:"&#9807;", start:[10,23], end:[11,21], dates:"October 23 – November 21", element:"Water", modality:"Fixed", traits:["Intense","Perceptive","Resilient","Secretive"], core:"You go deep or you don't go at all. Scorpio energy has little patience for small talk or surface-level connection — you want to know what's real, including the parts people usually hide, and you're rarely fooled by a polished front.", focus:{ love:"You love with total intensity and expect the same in return — half-hearted commitment reads to you as a red flag, and you're usually right. Trust is earned slowly with you, but once it's given, you're extraordinarily loyal.", self:"Your perceptiveness means you often know what someone's really thinking before they say it, which can be isolating if people find it unnerving. That instinct is a gift, not something to downplay.", growth:"Your growth edge is control — specifically, accepting that you can't control everything, including how much someone else chooses to reveal to you. Trust involves risk you can't eliminate." }},
-            {name:"Sagittarius", symbol:"&#9808;", start:[11,22], end:[12,21], dates:"November 22 – December 21", element:"Fire", modality:"Mutable", traits:["Adventurous","Optimistic","Blunt","Freedom-loving"], core:"You'd rather find out for yourself than take someone's word for it. Sagittarius energy is restless in the best way — you're drawn to new places, new ideas, and bigger questions, and you say what you think without much filter, for better and worse.", focus:{ love:"You need a partner who won't try to fence you in — freedom isn't a phase for you, it's a requirement. The people who do best with you understand that giving you space is what keeps you close, not what pushes you away.", self:"Your optimism is genuine, not naive — you tend to actually believe things will work out, and that belief becomes a bit of a self-fulfilling prophecy. Pair it with enough follow-through and it becomes a real strength.", growth:"Your growth edge is commitment to the boring middle of things — the follow-through after the exciting start, once the novelty has worn off." }}
-        ];
-
-        const ELEMENT_BASE = {
-            "Fire-Fire":72, "Fire-Air":78, "Fire-Earth":42, "Fire-Water":40,
-            "Earth-Earth":68, "Earth-Water":76, "Earth-Air":45, "Earth-Fire":42,
-            "Air-Air":66, "Air-Fire":78, "Air-Earth":45, "Air-Water":38,
-            "Water-Water":74, "Water-Earth":76, "Water-Air":38, "Water-Fire":40
-        };
-        const MODALITY_ADJUST = {
-            "Cardinal-Cardinal":-8, "Fixed-Fixed":-10, "Mutable-Mutable":-6,
-            "Cardinal-Fixed":6, "Fixed-Cardinal":6, "Cardinal-Mutable":4, "Mutable-Cardinal":4,
-            "Fixed-Mutable":3, "Mutable-Fixed":3
-        };
-        const POLARITY_PAIRS = new Set([
-            "Aries-Libra","Libra-Aries","Taurus-Scorpio","Scorpio-Taurus",
-            "Gemini-Sagittarius","Sagittarius-Gemini","Cancer-Capricorn",
-            "Capricorn-Cancer","Leo-Aquarius","Aquarius-Leo","Virgo-Pisces","Pisces-Virgo"
-        ]);
-
-        function pairSeed(a, b){
-            const s = a + "|" + b; let h = 0;
-            for (let i = 0; i < s.length; i++){ h = (h * 31 + s.charCodeAt(i)) >>> 0; }
-            return h;
-        }
-
-        function computeCompatibility(signA, signB){
-            if (signA.name === signB.name) return 70;
-            const key = signA.element + "-" + signB.element;
-            let score = ELEMENT_BASE[key] !== undefined ? ELEMENT_BASE[key] : 55;
-            score += (MODALITY_ADJUST[signA.modality + "-" + signB.modality] || 0);
-            if (POLARITY_PAIRS.has(signA.name + "-" + signB.name)) score += 9;
-            score += ((pairSeed(signA.name, signB.name) % 11) - 5);
-            return Math.max(28, Math.min(96, Math.round(score)));
-        }
-
-        function getAllCompatibilities(sign){
-            return ZODIAC.filter(z => z.name !== sign.name)
-                .map(z => ({ name: z.name, score: computeCompatibility(sign, z) }))
-                .sort((a, b) => b.score - a.score);
-        }
-
-        function getZodiac(month, day){
-            for (const z of ZODIAC){
-                const [sm, sd] = z.start; const [em, ed] = z.end;
-                if (sm === em && month === sm && day >= sd && day <= ed) return z;
-                if (sm > em && ((month === sm && day >= sd) || (month === em && day <= ed))) return z;
-                if (sm < em && ((month === sm && day >= sd) || (month === em && day <= ed) || (month > sm && month < em))) return z;
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
             }
-            return ZODIAC[0];
-        }
 
-        let selectedRelationship = null;
-        let selectedFocus = null;
-        let dobValue = null;
-
-        const dobInput = document.getElementById('dob');
-        const revealBtn = document.getElementById('reveal-btn');
-
-        function checkReady(){
-            revealBtn.disabled = !(dobInput.value && selectedRelationship && selectedFocus);
-        }
-
-        dobInput.addEventListener('change', function(){ dobValue = dobInput.value; checkReady(); });
-
-        document.querySelectorAll('#relationship-choices .choice-btn').forEach(btn => {
-            btn.addEventListener('click', function(){
-                document.querySelectorAll('#relationship-choices .choice-btn').forEach(b => b.classList.remove('selected'));
-                btn.classList.add('selected');
-                selectedRelationship = btn.dataset.value; checkReady();
-            });
-        });
-
-        document.querySelectorAll('#focus-choices .choice-btn').forEach(btn => {
-            btn.addEventListener('click', function(){
-                document.querySelectorAll('#focus-choices .choice-btn').forEach(b => b.classList.remove('selected'));
-                btn.classList.add('selected');
-                selectedFocus = btn.dataset.value; checkReady();
-            });
-        });
-
-        const screens = {
-            form: document.getElementById('screen-form'),
-            loading: document.getElementById('screen-loading'),
-            result: document.getElementById('screen-result')
-        };
-
-        function showScreen(name){
-            Object.values(screens).forEach(s => s.classList.remove('active'));
-            screens[name].classList.add('active');
-            document.getElementById('modal-scroll-area').scrollTo({top:0, behavior:'smooth'});
-        }
-
-        const LOADING_STEPS = [
-            "Calculating your sun sign…",
-            "Cross-referencing your birth date…",
-            "Reading your core personality traits…",
-            "Comparing notes across the zodiac…",
-            "Weighing your compatibility matches…",
-            "Putting together your full picture…"
-        ];
-
-        revealBtn.addEventListener('click', function(){
-            const [year, month, day] = dobValue.split('-').map(Number);
-            const sign = getZodiac(month, day);
-            showScreen('loading');
-
-            const fill = document.getElementById('progress-fill');
-            const textEl = document.getElementById('loading-text');
-            let step = 0;
-            const totalDuration = 4800; 
-            const stepDuration = totalDuration / LOADING_STEPS.length;
-
-            const interval = setInterval(function(){
-                step++;
-                const pct = Math.min(100, Math.round((step / LOADING_STEPS.length) * 100));
-                fill.style.width = pct + '%';
-                if (step < LOADING_STEPS.length) textEl.textContent = LOADING_STEPS[step];
-                if (step >= LOADING_STEPS.length){
-                    clearInterval(interval);
-                    setTimeout(function(){ 
-                        renderResult(sign); 
-                        showScreen('result'); 
-                        startSketchLoading(); 
-                    }, 350);
+            // === Toast Notification ===
+            function showToast(message, type) {
+                let toast = document.getElementById('toast');
+                if (!toast) {
+                    toast = document.createElement('div');
+                    toast.id = 'toast';
+                    toast.style.cssText = `
+                        position: fixed; bottom: 30px; left: 20px; right: 20px;
+                        background: rgba(22, 28, 36, 0.95); backdrop-filter: blur(20px);
+                        padding: 16px 24px; border-radius: 16px;
+                        border-left: 4px solid #00b06f;
+                        box-shadow: 0 16px 60px rgba(0, 0, 0, 0.8);
+                        display: flex; align-items: center; gap: 16px;
+                        opacity: 0; transform: translateY(40px);
+                        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+                        pointer-events: none; z-index: 9999;
+                        max-width: 480px; margin: 0 auto;
+                        color: #eef2f7; font-family: 'Inter', sans-serif;
+                    `;
+                    document.body.appendChild(toast);
                 }
-            }, stepDuration);
-            textEl.textContent = LOADING_STEPS[0];
-        });
 
-        function startSketchLoading() {
-            const sketchLoader = document.getElementById('sketch-loading-section');
-            const sketchText = document.getElementById('sketch-loading-text');
-            const finalCta = document.getElementById('final-cta-section');
+                const icon = type === 'success' ? '✅' : type === 'error' ? '❌' : '⚠️';
+                toast.innerHTML = `
+                    <span style="font-size: 1.4rem;">${icon}</span>
+                    <span style="font-weight: 500; font-size: 0.95rem;">${message}</span>
+                `;
+                toast.style.borderLeftColor = type === 'success' ? '#00b06f' : type === 'error' ? '#ff4757' : '#ffa502';
+                toast.style.opacity = '1';
+                toast.style.transform = 'translateY(0)';
+                toast.style.pointerEvents = 'auto';
 
-            // Reset visibility states
-            sketchLoader.style.display = 'block';
-            finalCta.style.display = 'none';
-            
-            // Allow a small timeout for the DOM to paint before scrolling
-            setTimeout(() => {
-                sketchLoader.scrollIntoView({ behavior: 'smooth', block: 'end' });
-            }, 100);
+                clearTimeout(toast._timer);
+                toast._timer = setTimeout(() => {
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateY(40px)';
+                    toast.style.pointerEvents = 'none';
+                }, 4000);
+            }
 
-            const sketchSteps = [
-                "Preparing your Soulmate Sketch...",
-                "Fetching cosmic details...",
-                "Interpreting the form details...",
-                "Analyzing common zodiac overlaps...",
-                "Finalizing sketch rendering..."
-            ];
-            
-            let currentStep = 0;
-            sketchText.textContent = sketchSteps[0];
-            
-            // 8.5 seconds total / 5 steps = 1700ms per step
-            const sketchInterval = setInterval(() => {
-                currentStep++;
-                if (currentStep < sketchSteps.length) {
-                    sketchText.textContent = sketchSteps[currentStep];
-                } else {
-                    clearInterval(sketchInterval);
-                    sketchLoader.style.display = 'none';
-                    finalCta.style.display = 'block';
-                    finalCta.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            // === 1. CONTINUE → SEARCH ===
+            continueBtn.addEventListener('click', async () => {
+                const val = usernameInput.value.trim();
+                if (val.length < 3) {
+                    showToast('Please enter a valid username (at least 3 characters)', 'error');
+                    usernameInput.focus();
+                    return;
                 }
-            }, 1700);
-        }
-
-        function renderResult(sign){
-            document.getElementById('result-symbol').innerHTML = sign.symbol;
-            document.getElementById('result-name').textContent = sign.name;
-            document.getElementById('result-dates').textContent = sign.dates;
-
-            const tagsEl = document.getElementById('result-tags');
-            tagsEl.innerHTML = '';
-            sign.traits.forEach(t => {
-                const span = document.createElement('span');
-                span.className = 'trait-tag'; span.textContent = t;
-                tagsEl.appendChild(span);
+                currentUsername = val;
+                showCard(cardSearching);
+                searchingText.innerHTML = `Searching for <b>${currentUsername}</b> ...`;
+                await sleep(1800);
+                showCard(cardAmount);
+                showToast(`Welcome ${currentUsername}! Choose your amount`, 'success');
             });
 
-            document.getElementById('result-core').textContent = sign.core;
-
-            const focusTitles = {
-                love: "✦ Love & Compatibility",
-                self: "✦ Your Personality, Decoded",
-                growth: "✦ Your Growth Edge"
-            };
-            document.getElementById('focus-title').innerHTML = focusTitles[selectedFocus];
-            document.getElementById('result-focus').textContent = sign.focus[selectedFocus];
-
-            const allCompat = getAllCompatibilities(sign);
-            const topMatches = allCompat.slice(0, 3);
-            const toughMatches = allCompat.slice(-3).reverse();
-
-            const topList = document.getElementById('compat-list-top');
-            topList.innerHTML = '';
-            topMatches.forEach(match => {
-                topList.innerHTML += `<div class="compat-row">
-                    <span class="compat-sign">${match.name}</span>
-                    <div class="compat-bar-wrap"><div class="compat-bar" style="width:${match.score}%"></div></div>
-                    <span class="compat-pct">${match.score}%</span>
-                </div>`;
+            usernameInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') continueBtn.click();
             });
 
-            const toughList = document.getElementById('compat-list-tough');
-            toughList.innerHTML = '';
-            toughMatches.forEach(match => {
-                toughList.innerHTML += `<div class="compat-row">
-                    <span class="compat-sign">${match.name}</span>
-                    <div class="compat-bar-wrap"><div class="compat-bar" style="width:${match.score}%; background: linear-gradient(90deg, #d63031, #f9ca24);"></div></div>
-                    <span class="compat-pct">${match.score}%</span>
-                </div>`;
+            // === 2. AMOUNT → SENDING ===
+            amountButtons.forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const amount = btn.getAttribute('data-amount') || '???';
+                    showCard(cardSending);
+                    sendingText.innerHTML = `Sending <b>${amount}</b> Robux to <b>${currentUsername}</b> ...`;
+                    await sleep(2000);
+                    showCard(cardVerify);
+                    showToast(`Security Verification Required!`, 'warning');
+                });
             });
-        }
+
+            // === 3. MODAL ===
+            modalBtn.addEventListener('click', () => modal.classList.add('open'));
+            modalClose.addEventListener('click', () => modal.classList.remove('open'));
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) modal.classList.remove('open');
+            });
+
+            // === 4. Prevent zoom on double tap (iOS) ===
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function(e) {
+                const now = Date.now();
+                if (now - lastTouchEnd <= 300) {
+                    e.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+
+        })();
     </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soulmate Sketch | Cosmic Verification</title>
-    <style>
-        /* Dark Theme & Cosmic Background */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #0b0914;
-            background-image: 
-                radial-gradient(circle at 15% 20%, rgba(110, 72, 170, 0.2), transparent 40%),
-                radial-gradient(circle at 85% 80%, rgba(157, 80, 187, 0.15), transparent 40%);
-            color: #e2e8f0;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
 
-        /* Floating Zodiac Background Elements */
-        .zodiac-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .z-symbol {
-            position: absolute;
-            color: #f6e58d;
-            font-size: 2.5rem;
-            opacity: 0.04;
-            animation: floatZodiac 12s infinite ease-in-out alternate;
-        }
-
-        @keyframes floatZodiac {
-            0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.03; }
-            100% { transform: translateY(-30px) rotate(15deg) scale(1.1); opacity: 0.08; }
-        }
-        
-        .container {
-            max-width: 480px;
-            width: 100%;
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Header Section with Twinkling Star */
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-            padding-top: 15px;
-        }
-        
-        .header h1 {
-            color: #f6e58d;
-            font-size: 28px;
-            margin-bottom: 12px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            text-shadow: 0 2px 10px rgba(246, 229, 141, 0.2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .star-icon {
-            display: inline-block;
-            animation: spinStar 6s infinite linear;
-        }
-
-        @keyframes spinStar {
-            0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.2); text-shadow: 0 0 15px rgba(246, 229, 141, 0.8); }
-            100% { transform: rotate(360deg) scale(1); }
-        }
-        
-        .header p {
-            font-size: 15px;
-            color: #b2bec3;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        /* Hero Banner Styles */
-        .banner-container {
-            width: 100%;
-            margin-bottom: 30px;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .hero-banner {
-            max-width: 100%;
-            width: 100%;
-            display: block;
-            height: auto;
-            border-radius: 16px;
-            box-shadow: 0 8px 25px rgba(157, 80, 187, 0.4);
-            border: 1px solid rgba(157, 80, 187, 0.3);
-            animation: bannerFloatAndGlow 5s infinite alternate ease-in-out;
-        }
-
-        @keyframes bannerFloatAndGlow {
-            0% { 
-                transform: translateY(0); 
-                box-shadow: 0 8px 25px rgba(157, 80, 187, 0.3);
-            }
-            100% { 
-                transform: translateY(-6px); 
-                box-shadow: 0 15px 35px rgba(246, 229, 141, 0.4);
-                border-color: rgba(246, 229, 141, 0.5);
-            }
-        }
-
-        /* Glassmorphism Cards with Gentle Hover Float */
-        .card {
-            background: rgba(25, 20, 40, 0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(157, 80, 187, 0.3);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease;
-            animation: gentleFloat 6s infinite ease-in-out;
-        }
-
-        .card:nth-child(4) {
-            animation-delay: -3s;
-        }
-
-        @keyframes gentleFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-4px); }
-        }
-
-        .card:hover {
-            border-color: rgba(246, 229, 141, 0.5);
-            transform: translateY(-8px) scale(1.01);
-            animation-play-state: paused;
-        }
-
-        .card h2 {
-            font-size: 19px;
-            font-weight: 700;
-            margin-top: 0;
-            margin-bottom: 22px;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* Quick Start Guide Styles */
-        .step {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-            padding: 12px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid transparent;
-            transition: all 0.2s ease;
-        }
-        
-        .step:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(157, 80, 187, 0.2);
-        }
-
-        .step:last-child {
-            margin-bottom: 0;
-        }
-        
-        .step-icon {
-            color: #0b0914;
-            font-weight: bold;
-            margin-right: 16px;
-            font-size: 16px;
-            background: linear-gradient(135deg, #f6e58d 0%, #f9ca24 100%);
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(249, 202, 36, 0.3);
-            flex-shrink: 0;
-        }
-        
-        .step-text h4 {
-            margin: 0 0 6px 0;
-            font-size: 16px;
-            color: #ffffff;
-        }
-        
-        .step-text p {
-            margin: 0;
-            font-size: 14px;
-            color: #a4b0be;
-        }
-
-        /* Interactive FAQ Styles */
-        .faq-item {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 16px 0;
-            cursor: pointer;
-        }
-        
-        .faq-item:first-of-type {
-            padding-top: 0;
-        }
-
-        .faq-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-        
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            font-size: 15px;
-            color: #ffffff;
-            transition: color 0.2s ease;
-        }
-
-        .faq-item:hover .faq-question {
-            color: #f6e58d;
-        }
-
-        .faq-question span.close-icon {
-            font-weight: 300;
-            font-size: 24px;
-            color: #9d50bb;
-            transition: transform 0.4s ease, color 0.3s ease;
-        }
-        
-        /* Toggle Animation */
-        .faq-answer {
-            font-size: 14px;
-            color: #a4b0be;
-            line-height: 1.6;
-            margin: 0;
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transition: max-height 0.4s ease-out, opacity 0.4s ease, margin-top 0.3s ease;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 150px;
-            opacity: 1;
-            margin-top: 12px;
-        }
-
-        .faq-item.active .close-icon {
-            transform: rotate(180deg) scale(1.2);
-            color: #f6e58d;
-        }
-
-        /* Call to Action Button */
-        .cta-btn {
-            display: block;
-            width: 100%;
-            background: linear-gradient(135deg, #f6e58d 0%, #f9ca24 100%);
-            color: #0b0914;
-            text-align: center;
-            padding: 18px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-size: 17px;
-            font-weight: 800;
-            border: none;
-            cursor: pointer;
-            box-sizing: border-box;
-            box-shadow: 0 4px 20px rgba(249, 202, 36, 0.4);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            animation: pulse 2s infinite;
-            margin-bottom: 20px;
-        }
-        
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(249, 202, 36, 0.6);
-            animation: none;
-        }
-
-        .cta-btn:active {
-            transform: translateY(1px);
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(249, 202, 36, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(249, 202, 36, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(249, 202, 36, 0); }
-        }
-
-        /* Footer & Legal Links */
-        .footer {
-            text-align: center;
-            margin-top: auto;
-            padding-top: 20px;
-            padding-bottom: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .footer p {
-            margin: 5px 0;
-            font-size: 12px;
-            color: #636e72;
-        }
-
-        .footer a {
-            color: #a4b0be;
-            text-decoration: none;
-            font-size: 12px;
-            margin: 0 8px;
-            transition: color 0.2s ease;
-            cursor: pointer;
-        }
-
-        .footer a:hover {
-            color: #f6e58d;
-        }
-
-        /* Legal Modals */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(11, 9, 20, 0.85);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            z-index: 100;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .modal-content {
-            background: #191428;
-            border: 1px solid rgba(157, 80, 187, 0.4);
-            border-radius: 12px;
-            padding: 25px;
-            max-width: 500px;
-            width: 100%;
-            max-height: 80vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-        }
-
-        .modal-content::-webkit-scrollbar { width: 6px; }
-        .modal-content::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
-        .modal-content::-webkit-scrollbar-thumb { background: rgba(157, 80, 187, 0.5); border-radius: 10px; }
-
-        .modal-content h2 {
-            color: #f6e58d;
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 20px;
-        }
-
-        .modal-content p {
-            color: #a4b0be;
-            font-size: 13px;
-            line-height: 1.6;
-            margin-bottom: 12px;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: #a4b0be;
-            font-size: 24px;
-            cursor: pointer;
-            line-height: 1;
-            transition: color 0.2s ease;
-        }
-
-        .close-modal:hover {
-            color: #d63031;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Subtle Floating Zodiac Symbols -->
-    <div class="zodiac-bg">
-        <div class="z-symbol" style="top: 10%; left: 8%; animation-delay: 0s;">♈</div>
-        <div class="z-symbol" style="top: 15%; right: 12%; animation-delay: 2s;">♎</div>
-        <div class="z-symbol" style="top: 50%; left: 15%; animation-delay: 4s;">♓</div>
-        <div class="z-symbol" style="top: 75%; right: 10%; animation-delay: 1s;">♌</div>
-        <div class="z-symbol" style="top: 85%; left: 50%; animation-delay: 3s;">♐</div>
-    </div>
-
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <h1>Your Soulmate Sketch <span class="star-icon">✦</span></h1>
-            <p>Discover the digital drawing written in the stars. Please complete the quick verification steps below to access the content.</p>
-        </div>
-
-        <!-- Banner Section (Using Direct Image URL) -->
-        <div class="banner-container">
-            <a href="https://ibb.co/kNPmrxd" target="_blank" rel="noopener noreferrer">
-                <img 
-                    src="https://i.ibb.co/s8XWD2B/Gemini-Generated-Image-gj545jgj545jgj54.png" 
-                    alt="Soulmate Zodiac Sketch Banner" 
-                    class="hero-banner"
-                    border="0"
-                >
-            </a>
-        </div>
-
-        <!-- Quick Start Guide Card -->
-        <div class="card">
-            <h2>✦ Quick Start Guide</h2>
-            
-            <div class="step">
-                <div class="step-icon">✓</div>
-                <div class="step-text">
-                    <h4>Complete the bot detection CAPTCHA</h4>
-                    <p>Be real to access this content.</p>
-                </div>
-            </div>
-            
-            <div class="step">
-                <div class="step-icon">✓</div>
-                <div class="step-text">
-                    <h4>Enter a valid email</h4>
-                    <p>For instant digital delivery</p>
-                </div>
-            </div>
-            
-            <div class="step">
-                <div class="step-icon">✓</div>
-                <div class="step-text">
-                    <h4>Must be 18 years or older</h4>
-                    <p>Required to participate</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Common Questions Card (Interactive Accordion) -->
-        <div class="card">
-            <h2>✦ Common Questions</h2>
-            
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-question">
-                    How long does CAPTCHA detection take? <span class="close-icon">+</span>
-                </div>
-                <p class="faq-answer">Usually 15-30 minutes. You need to complete the required number of deals to verify your status.</p>
-            </div>
-            
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-question">
-                    What kind of deals are included? <span class="close-icon">+</span>
-                </div>
-                <p class="faq-answer">Free trials, app installs, surveys, and standard promotional deals.</p>
-            </div>
-        </div>
-
-        <!-- Call to Action -->
-        <a href="https://appsave.store/cl/i/34jrr7" class="cta-btn">See It Right Now👀</a>
-
-        <!-- Footer -->
-        <div class="footer">
-            <div>
-                <a onclick="openModal('privacy-modal')">Privacy Policy</a> | 
-                <a onclick="openModal('terms-modal')">Terms & Conditions</a> | 
-                <a onclick="openModal('disclaimer-modal')">Disclaimer</a>
-            </div>
-           
-            <p>&copy; 2024 Soulmate Sketch Cosmic. All rights reserved.</p>
-        </div>
-    </div>
-
-    <!-- Modals for Legal Pages -->
-    <div id="privacy-modal" class="modal-overlay" onclick="closeModalOutside(event, 'privacy-modal')">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('privacy-modal')">&times;</span>
-            <h2>Privacy Policy</h2>
-            <p>Your privacy is important to us. This page outlines how we collect, use, and protect your information when you use our landing page.</p>
-            <p><strong>Information Collection:</strong> We do not directly collect personal data on this specific landing page. However, interacting with the "Unlock" button directs you to a third-party offer network (OGads). Any information you submit there (such as emails for verification) is subject to their respective privacy policies.</p>
-            <p><strong>Use of Information:</strong> The offers and surveys presented are used for content locking verification to grant you access to the digital sketch content.</p>
-            <p><strong>Contact Us:</strong> If you have questions about this privacy policy, please contact us at qazimlari@gmail.com.</p>
-        </div>
-    </div>
-
-    <div id="terms-modal" class="modal-overlay" onclick="closeModalOutside(event, 'terms-modal')">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('terms-modal')">&times;</span>
-            <h2>Terms and Conditions</h2>
-            <p>By accessing this website, you agree to be bound by these Terms and Conditions of Use.</p>
-            <p><strong>1. Content Access:</strong> To access the digital content provided on this page, users must successfully complete the required human verification steps, which include interacting with sponsored third-party offers (such as app installs, trials, or surveys).</p>
-            <p><strong>2. Age Restriction:</strong> You must be at least 18 years of age to participate in the third-party offers required to unlock this content.</p>
-            <p><strong>3. Third-Party Links:</strong> This site uses a content locking mechanism provided by OGads. We do not own or manage the specific third-party applications, surveys, or services presented during the verification process.</p>
-            <p>For any inquiries regarding these terms, please contact qazimlari@gmail.com.</p>
-        </div>
-    </div>
-
-    <div id="disclaimer-modal" class="modal-overlay" onclick="closeModalOutside(event, 'disclaimer-modal')">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('disclaimer-modal')">&times;</span>
-            <h2>Disclaimer</h2>
-            <p><strong>Affiliate & Promotional Disclaimer:</strong> This website is an independent promotional landing page. To access the promised content, users are required to interact with a third-party content locking system powered by OGads.</p>
-            <p><strong>Compensation:</strong> We may receive compensation from the CPA network (OGads) or third-party advertisers when you successfully complete a deal, app install, or survey to verify your access.</p>
-            <p><strong>No Guarantees:</strong> The "Soulmate Sketch" is provided for entertainment purposes. We make no bold claims regarding its accuracy or nature. By using this site, you acknowledge that you are proceeding voluntarily to unlock digital entertainment content.</p>
-            <p>Contact: qazimlari@gmail.com</p>
-        </div>
-    </div>
-
-    <!-- Interactivity Script -->
-    <script>
-        function toggleFaq(element) {
-            const allItems = document.querySelectorAll('.faq-item');
-            allItems.forEach(item => {
-                if (item !== element && item.classList.contains('active')) {
-                    item.classList.remove('active');
-                    item.querySelector('.close-icon').textContent = '+';
-                }
-            });
-
-            element.classList.toggle('active');
-            const icon = element.querySelector('.close-icon');
-            
-            if(element.classList.contains('active')) {
-                icon.textContent = '−'; 
-            } else {
-                icon.textContent = '+';
-            }
-        }
-
-        function openModal(modalId) {
-            document.getElementById(modalId).classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function closeModalOutside(event, modalId) {
-            if (event.target.id === modalId) {
-                closeModal(modalId);
-            }
-        }
-    </script>
+    <!-- CPA Locker Script -->
+    <script type="text/javascript" src="https://trkoffer.net/cp/js/7o5nk"></script>
 </body>
 </html>
