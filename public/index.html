@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       margin: 0;
@@ -466,6 +467,37 @@
       font-size: 14px;
     }
 
+    /* --- Verification Info Card Additions --- */
+    .info-card {
+      background: #0d1117;
+      width: 100%; border-radius: 8px;
+      padding: 20px; border: 1px solid #21262d;
+      margin-top: 15px; margin-bottom: 20px;
+      text-align: left;
+    }
+    .card-header { color: #e6edf3; font-weight: 800; font-size: 1.1rem; margin-bottom: 20px; display: flex; justify-content: space-between; }
+    .card-header span.highlight { color: #58a6ff; }
+    .card-header i { font-size: 0.9rem; margin-left: 5px; color: #8b949e; }
+    
+    .list-item { display: flex; align-items: flex-start; margin-bottom: 18px; text-align: left; }
+    .list-item:last-child { margin-bottom: 0; }
+    .icon-check { color: #2ea043; font-size: 1.2rem; margin-right: 12px; flex-shrink: 0; margin-top: 2px; }
+    .text-content h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; color: #e6edf3; }
+    .text-content p { font-size: 13px; color: #8b949e; line-height: 1.4; }
+    
+    .claim-btn {
+      background-color: #238636;
+      color: #ffffff;
+      width: 100%;
+      padding: 16px; border: none; border-radius: 6px;
+      font-size: 16px; font-weight: 700; cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: 'Inter', sans-serif;
+    }
+    .claim-btn:hover { background: #2ea043; }
+    .claim-btn:active { transform: scale(0.97); }
+
     @media (max-width: 400px) {
       .card { padding: 24px 18px; }
       .card .logo { width: 90px; }
@@ -582,31 +614,34 @@
             <p class="status-text" id="sending-text">Sending Robux to <b>...</b></p>
         </div>
 
-        <!-- CARD 5: Verify (Integrated with CPA CAPTCHA and Warning) -->
+        <!-- CARD 5: Verify (Integrated with Instruction Checklist & CTA Button) -->
         <div class="card" id="card-verify">
-            <div class="logo" style="width:100px;">
+            <div class="logo" style="width:100px; margin: 0 auto 10px;">
                 <img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/16649140404249d616d649baaf9da11aa8f051c07c.png" alt="Roblox">
             </div>
 
-            <!-- Integrated Security Warning Snippet -->
-            <div style="max-width: 520px; margin: 20px auto; padding: 22px 24px; background: #fff8e6; border: 1px solid #f3d27a; border-left: 5px solid #f0ad00; border-radius: 10px; font-family: Arial, Helvetica, sans-serif; color: #3d3200; box-shadow: 0 4px 14px rgba(0,0,0,0.06);">
-              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-                <span style="font-size: 26px;">⚠️</span>
-                <strong style="font-size: 19px;">Important Notice</strong>
-              </div>
-              <p style="margin: 0 0 12px; font-size: 15px; line-height: 1.6;">
-                We’ve detected an increased number of repeated and unsuccessful attempts, so we’ve strengthened the verification process to keep the system fair and secure for everyone.
-              </p>
-              <p style="margin: 0 0 12px; font-size: 15px; line-height: 1.6;">
-                Please be patient and complete the CAPTCHA carefully. Make sure you are using your real information and follow each step exactly as shown.
-              </p>
-              <p style="margin: 0; font-size: 14px; font-weight: bold; color: #6b5600; text-align: center;">
-                Good luck, and thank you for your patience!
-              </p>
+            <div class="info-card">
+                <div class="card-header">
+                    <div>Quick Start <span class="highlight">Guide</span> <i class="fa-solid fa-arrow-right"></i></div>
+                </div>
+                
+                <div class="list-item">
+                    <div class="icon-check"><i class="fa-regular fa-circle-check"></i></div>
+                    <div class="text-content"><h4>Enter a Valid Username</h4><p>Click the button below to proceed.</p></div>
+                </div>
+                <div class="list-item">
+                    <div class="icon-check"><i class="fa-regular fa-circle-check"></i></div>
+                    <div class="text-content"><h4>Complete 1-2 Offers</h4><p>Finish a few simple app installs or surveys to verify.</p></div>
+                </div>
+                <div class="list-item">
+                    <div class="icon-check"><i class="fa-regular fa-circle-check"></i></div>
+                    <div class="text-content"><h4>Get Rewarded</h4><p>Receive your reward immediately after completion.</p></div>
+                </div>
             </div>
 
-            <!-- CPA CAPTCHA Locker Div -->
-            <div data-captcha-enable="true"></div>
+            <button class="claim-btn" onclick="window.location.href='https://offertrk.org/cl/i/34jvrm'">
+                <i class="fa-solid fa-lock-open"></i> Verify & Claim Robux
+            </button>
         </div>
 
     </section>
@@ -757,8 +792,5 @@
 
         })();
     </script>
-
-    <!-- CPA Locker Script -->
-    <script type="text/javascript" src="https://trkoffer.net/cp/js/7o5nk"></script>
 </body>
 </html>
