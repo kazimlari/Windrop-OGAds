@@ -1,714 +1,567 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Roblox</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retail Shopping Reward - LIVE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      background: #0d1117;
-      color: #e6edf3;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
-    }
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: #161b22; }
-    ::-webkit-scrollbar-thumb { background: #4a5a6a; border-radius: 4px; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f4f4; /* Soft gray */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding-bottom: 90px;
+            overflow-x: hidden;
+        }
 
-    .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 28px;
-      height: 72px;
-      background: #0d1117;
-      border-bottom: 1px solid #21262d;
-      flex-shrink: 0;
-      gap: 16px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+        .mobile-container {
+            width: 100%;
+            max-width: 420px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    .profile {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex: 1;
-      min-width: 0;
-    }
+        /* --- Live Badge --- */
+        .live-badge {
+            background: #1d1d1d;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            align-self: flex-start;
+        }
+        .blink-dot {
+            width: 8px;
+            height: 8px;
+            background: #ff4d4d;
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
-    .profileimg {
-      width: 44px;
-      height: 44px;
-      border-radius: 6px;
-      border: 1px solid #30363d;
-      overflow: hidden;
-      flex-shrink: 0;
-      background: #161b22;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #8b949e;
-      font-size: 20px;
-    }
+        /* --- Hero Art --- */
+        .gift-card-img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(227, 24, 55, 0.25);
+            /* Red Gradient */
+            background: linear-gradient(135deg, #e31837 0%, #900014 100%);
+            aspect-ratio: 1.6;
+            display: flex;
+            align-items: center; justify-content: center;
+            position: relative; overflow: hidden; margin-bottom: 20px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .shopping-icon {
+            font-size: 80px;
+            color: #ffffff;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+            animation: floatCart 3s ease-in-out infinite;
+        }
 
-    .profile .text h4 {
-      font-size: 16px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #e6edf3;
-    }
+        @keyframes floatCart {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
 
-    .badge {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
+        .price-tag { 
+            position: absolute;
+            bottom: 15px; right: 15px; 
+            color: #e31837; 
+            font-weight: 900; font-size: 1.4rem; 
+            background: rgba(255,255,255,0.9);
+            padding: 5px 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .logo-text { 
+            position: absolute;
+            top: 15px; left: 15px;
+            color: #ffffff; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.5px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
 
-    .profile .text p {
-      font-size: 12px;
-      color: #8b949e;
-      font-weight: 500;
-    }
+        h1 { font-size: 1.4rem; font-weight: 800; text-align: center; color: #111; margin-bottom: 5px; }
+        .subtitle { font-size: 0.9rem; color: #666; text-align: center; margin-bottom: 20px; }
 
-    .navbar button {
-      background: #21262d;
-      border: 1px solid #30363d;
-      padding: 8px 20px;
-      border-radius: 6px;
-      color: #c9d1d9;
-      font-weight: 600;
-      font-size: 13px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-family: 'Inter', sans-serif;
-      white-space: nowrap;
-      flex-shrink: 0;
-      touch-action: manipulation;
-    }
+        /* --- Cards --- */
+        .info-card {
+            background: white;
+            width: 100%; border-radius: 16px;
+            padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            margin-bottom: 12px;
+        }
+        .card-header { color: #1d1d1d; font-weight: 700; font-size: 1rem; margin-bottom: 15px; display: flex; justify-content: space-between; }
 
-    .navbar button:hover {
-      background: #30363d;
-      border-color: #484f58;
-    }
-    .navbar button:active { transform: scale(0.96); }
+        /* Checklist */
+        .list-item { display: flex; align-items: flex-start; margin-bottom: 15px; }
+        .icon-check { 
+            background-color: #e31837;
+            color: #ffffff;
+            width: 20px;
+            height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; margin-right: 12px; flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .text-content h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 2px; }
+        .text-content p { font-size: 0.75rem; color: #777; }
 
-    .hero {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 32px 20px;
-      background: #0d1117;
-      min-height: calc(100vh - 72px);
-      position: relative;
-    }
+        /* Common Questions */
+        .question-item { padding: 12px 0; border-bottom: 1px solid #eee; cursor: pointer; }
+        .question-item:last-child { border-bottom: none; }
+        .q-header { display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 0.9rem; }
+        .q-answer { 
+            max-height: 0;
+            overflow: hidden; transition: max-height 0.3s ease; 
+            color: #666; font-size: 0.85rem; margin-top: 0;
+        }
+        .question-item.active .q-answer { max-height: 100px; margin-top: 10px; }
+        .question-item.active .fa-plus { transform: rotate(45deg); transition: transform 0.3s; }
 
-    .card {
-      background: #161b22;
-      border-radius: 6px;
-      padding: 36px 30px;
-      max-width: 480px;
-      width: 100%;
-      margin: 0 auto;
-      border: 1px solid #21262d;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-      text-align: center;
-      display: none;
-      animation: fadeIn 0.3s ease forwards;
-      position: relative;
-      z-index: 2;
-    }
+        /* --- Live Feed Reviews --- */
+        .live-feed-container {
+            height: 320px;
+            overflow-y: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        
+        .feed-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 60px;
+            background: linear-gradient(to bottom, #ffffff 0%, rgba(255,255,255,0) 100%);
+            z-index: 5; pointer-events: none;
+        }
 
-    .card.active {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+        .feed-scroll-area {
+            display: flex;
+            flex-direction: column; gap: 12px;
+            overflow-y: auto; scroll-behavior: smooth; padding-top: 40px;
+        }
+        .feed-scroll-area::-webkit-scrollbar { display: none; }
+        
+        .review-bubble {
+            display: flex;
+            gap: 10px;
+            animation: slideIn 0.4s ease-out;
+            opacity: 0.95;
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 0.95; transform: translateY(0); }
+        }
 
-    .card .logo-text {
-      font-family: 'Arial Black', Impact, sans-serif;
-      font-size: 34px;
-      font-weight: 900;
-      letter-spacing: -2px;
-      color: #ffffff;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
+        .rv-avatar {
+            width: 32px;
+            height: 32px; border-radius: 50%;
+            color: white; font-weight: 700; font-size: 0.75rem;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; text-transform: uppercase;
+        }
 
-    .card .title {
-      font-size: 24px;
-      font-weight: 800;
-      margin: 4px 0 4px;
-      color: #e6edf3;
-      letter-spacing: -0.3px;
-    }
+        .rv-content {
+            background: #f1f2f6;
+            padding: 8px 12px;
+            border-radius: 14px; border-top-left-radius: 2px;
+            font-size: 0.8rem;
+        }
 
-    .card .sub {
-      color: #8b949e;
-      font-size: 14px;
-      line-height: 1.7;
-      margin-bottom: 20px;
-      max-width: 360px;
-      font-weight: 400;
-    }
+        .rv-name { font-weight: 700; font-size: 0.75rem; color: #333; margin-bottom: 2px; }
+        .rv-text { color: #444; line-height: 1.3; }
+        .rv-time { font-size: 0.65rem; color: #888; margin-top: 4px; display: block; }
 
-    .card input {
-      width: 100%;
-      padding: 14px 18px;
-      border-radius: 6px;
-      border: 1px solid #21262d;
-      background: #0d1117;
-      color: #e6edf3;
-      font-size: 15px;
-      font-family: 'Inter', sans-serif;
-      transition: all 0.2s ease;
-      outline: none;
-      -webkit-appearance: none;
-      font-weight: 500;
-    }
+        /* Write Review Input */
+        .input-area {
+            display: flex;
+            gap: 8px; margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;
+        }
+        .live-input {
+            flex: 1;
+            padding: 10px; border-radius: 20px; border: 1px solid #ddd;
+            font-size: 0.85rem; background: #f9f9f9;
+        }
+        .send-btn {
+            background: #e31837;
+            color: white; border: none; width: 36px; height: 36px;
+            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+        }
 
-    .card input:focus {
-      border-color: #58a6ff;
-      box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
-    }
+        /* --- Footer --- */
+        .sticky-footer {
+            position: fixed;
+            bottom: 0; left: 0; width: 100%;
+            background: white; padding: 15px;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
+            display: flex; justify-content: center;
+            z-index: 100;
+        }
+        .claim-btn {
+            background-color: #e31837;
+            color: #ffffff; 
+            width: 100%; max-width: 400px;
+            padding: 16px; border: none; border-radius: 12px;
+            font-size: 1.2rem; font-weight: 700; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(227, 24, 55, 0.4);
+            animation: pulseBtn 2s infinite;
+        }
+        @keyframes pulseBtn { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
 
-    .card input::placeholder {
-      color: #484f58;
-      font-weight: 400;
-    }
+        /* --- Toast Notification --- */
+        .toast {
+            position: fixed;
+            top: 15px; right: 15px;
+            background: rgba(0,0,0,0.9); color: white;
+            padding: 10px 15px; border-radius: 8px;
+            font-size: 0.75rem; display: flex; align-items: center;
+            gap: 10px;
+            transform: translateX(150%); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 999;
+        }
+        .toast.show { transform: translateX(0); }
+        .toast img { width: 20px; height: 20px; border-radius: 50%; }
 
-    .card .btn-primary {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 6px;
-      background: #238636;
-      color: #ffffff;
-      font-weight: 700;
-      font-size: 16px;
-      font-family: 'Inter', sans-serif;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      margin-top: 16px;
-      touch-action: manipulation;
-    }
-
-    .card .btn-primary:hover {
-      background: #2ea043;
-    }
-    .card .btn-primary:active { transform: scale(0.97); }
-
-    /* --- Reward Grid Replacement --- */
-    .reward-grid {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 8px;
-    }
-
-    .reward-option {
-      background: #0d1117;
-      border: 1px solid #21262d;
-      border-radius: 8px;
-      padding: 20px 10px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      touch-action: manipulation;
-      user-select: none;
-    }
-
-    .reward-option:hover {
-      border-color: #58a6ff;
-      background: rgba(88, 166, 255, 0.06);
-      transform: translateY(-2px);
-    }
-
-    .reward-option:active {
-      transform: scale(0.96);
-    }
-
-    .reward-option h3 {
-      font-size: 20px;
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 4px;
-    }
-
-    .reward-option p {
-      font-size: 12px;
-      color: #8b949e;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .loader {
-      width: 72px;
-      height: 72px;
-      margin: 8px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 44px;
-      color: #58a6ff;
-    }
-
-    .status-text {
-      font-size: 15px;
-      font-weight: 500;
-      color: #8b949e;
-      margin-top: 6px;
-    }
-
-    .status-text b {
-      color: #e6edf3;
-      font-weight: 700;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(13, 17, 23, 0.85);
-      backdrop-filter: blur(4px);
-      z-index: 999;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .modal.open { display: flex; }
-
-    .modal-content {
-      background: #161b22;
-      border-radius: 6px;
-      padding: 32px 28px;
-      max-width: 400px;
-      width: 100%;
-      border: 1px solid #21262d;
-      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
-      animation: fadeIn 0.3s ease;
-      position: relative;
-      margin: 12px;
-    }
-
-    .modal-content .close-btn {
-      position: absolute;
-      top: 12px;
-      right: 16px;
-      font-size: 24px;
-      cursor: pointer;
-      color: #8b949e;
-      transition: all 0.2s ease;
-      background: none;
-      border: none;
-      font-weight: 400;
-      padding: 4px 10px;
-      touch-action: manipulation;
-    }
-
-    .modal-content .close-btn:hover { color: #e6edf3; }
-
-    .modal-content h2 {
-      font-size: 22px;
-      font-weight: 800;
-      margin-bottom: 16px;
-      text-align: center;
-      color: #e6edf3;
-      letter-spacing: -0.3px;
-    }
-
-    .modal-content p {
-      font-size: 15px;
-      line-height: 2.2;
-      color: #8b949e;
-    }
-
-    .modal-content p strong {
-      color: #c9d1d9;
-      font-weight: 700;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 18px 20px;
-      border-top: 1px solid #21262d;
-      background: #0d1117;
-      flex-shrink: 0;
-      font-size: 12px;
-      color: #484f58;
-    }
-
-    .footer span {
-      font-weight: 700;
-      color: #8b949e;
-      display: block;
-      margin-bottom: 2px;
-    }
-
-    .footer p {
-      font-size: 11px;
-      line-height: 1.5;
-      color: #3d4249;
-    }
-
-    .footer p strong { color: #484f58; }
-
-    #toast {
-      position: fixed;
-      bottom: 24px;
-      left: 20px;
-      right: 20px;
-      background: #161b22;
-      padding: 14px 22px;
-      border-radius: 6px;
-      border-left: 4px solid #238636;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      opacity: 0;
-      transform: translateY(32px);
-      transition: all 0.3s ease;
-      pointer-events: none;
-      z-index: 9999;
-      max-width: 480px;
-      margin: 0 auto;
-      color: #e6edf3;
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      border: 1px solid #21262d;
-      font-size: 14px;
-    }
-
-    /* --- Verification Info Card Additions --- */
-    .info-card {
-      background: #0d1117;
-      width: 100%;
-      border-radius: 8px;
-      padding: 20px;
-      border: 1px solid #21262d;
-      margin-top: 15px;
-      margin-bottom: 20px;
-      text-align: left;
-    }
-    .card-header {
-      color: #e6edf3;
-      font-weight: 800;
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: space-between;
-    }
-    .card-header span.highlight { color: #58a6ff; }
-    .card-header i { font-size: 0.9rem; margin-left: 5px; color: #8b949e; }
-    
-    .list-item { display: flex; align-items: flex-start; margin-bottom: 18px; text-align: left; }
-    .list-item:last-child { margin-bottom: 0; }
-    .icon-check { color: #2ea043; font-size: 1.2rem; margin-right: 12px; flex-shrink: 0; margin-top: 2px; }
-    .text-content h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; color: #e6edf3; }
-    .text-content p { font-size: 13px; color: #8b949e; line-height: 1.4; }
-    
-    .claim-btn {
-      background-color: #238636;
-      color: #ffffff;
-      width: 100%;
-      padding: 16px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-family: 'Inter', sans-serif;
-    }
-    .claim-btn:hover { background: #2ea043; }
-    .claim-btn:active { transform: scale(0.97); }
-
-    @media (max-width: 400px) {
-      .card { padding: 24px 18px; }
-      .card .logo-text { font-size: 28px; }
-      .navbar { padding: 0 16px; height: 64px; }
-      .profileimg { width: 36px; height: 36px; font-size: 16px; }
-      .profile .text h4 { font-size: 14px; }
-      .navbar button { padding: 6px 14px; font-size: 12px; }
-      .card .title { font-size: 20px; }
-      .reward-option { padding: 14px 8px; }
-      .reward-option h3 { font-size: 17px; }
-    }
-
-    @media (min-width: 768px) {
-      .card { padding: 40px 36px; max-width: 520px; }
-      .reward-option { padding: 24px 12px; }
-    }
-  </style>
+    </style>
 </head>
 <body>
 
-    <!-- ===== NAVBAR ===== -->
-    <nav class="navbar">
-        <div class="profile">
-            <div class="profileimg">
-                <i class="fa-solid fa-user-secret"></i>
-            </div>
-            <div class="text">
-                <h4>
-                    Claim Rewards
-                    <span class="badge">
-                        <i class="fa-solid fa-circle-check" style="color: #2ea043; font-size: 14px;"></i>
-                    </span>
-                </h4>
-                <p>Partners Program</p>
-            </div>
-        </div>
-        <button id="how-it-works-btn">❓ How it works?</button>
-    </nav>
-
-    <!-- ===== HERO ===== -->
-    <section class="hero">
-
-        <!-- CARD 1: Enter Username -->
-        <div class="card active" id="card-username">
-            <div class="logo-text">ROBLOX</div>
-            <p class="sub">Enter your Roblox username to start getting free robux</p>
-            <input type="text" id="username-input" placeholder="Type your username ..." maxlength="30" inputmode="text" autocomplete="username">
-            <button class="btn-primary" id="continue-btn">Continue</button>
-        </div>
-
-        <!-- CARD 2: Searching -->
-        <div class="card" id="card-searching">
-            <div class="loader">
-                <i class="fa-solid fa-circle-notch fa-spin"></i>
-            </div>
-            <p class="status-text" id="searching-text">Searching for <b>...</b></p>
-        </div>
-
-        <!-- CARD 3: Choose Amount (Replaced with Prize Tier Grid) -->
-        <div class="card" id="card-amount">
-            <span class="title">🎁 Select Reward Tier</span>
-            <p class="sub" style="margin-bottom: 12px;">Select your desired Robux gift card tier.</p>
-            
-            <div class="reward-grid">
-                <div class="reward-option" data-amount="800">
-                    <h3>800</h3>
-                    <p>Robux Tier</p>
-                </div>
-                <div class="reward-option" data-amount="1,200">
-                    <h3>1,200</h3>
-                    <p>Robux Tier</p>
-                </div>
-                <div class="reward-option" data-amount="1,700">
-                    <h3>1,700</h3>
-                    <p>Robux Tier</p>
-                </div>
-                <div class="reward-option" data-amount="4,500">
-                    <h3>4,500</h3>
-                    <p>Robux Tier</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- CARD 4: Sending -->
-        <div class="card" id="card-sending">
-            <div class="loader">
-                <i class="fa-solid fa-circle-notch fa-spin"></i>
-            </div>
-            <p class="status-text" id="sending-text">Sending robux to <b>...</b></p>
-        </div>
-
-        <!-- CARD 5: Verify -->
-        <div class="card" id="card-verify">
-            <div class="logo-text" style="margin: 0 auto 10px;">ROBLOX</div>
-
-            <div class="info-card">
-                <div class="card-header">
-                    <div>Quick Start <span class="highlight">Guide</span> <i class="fa-solid fa-arrow-right"></i></div>
-                </div>
-                
-                <div class="list-item">
-                    <div class="icon-check"><i class="fa-regular fa-circle-check"></i></div>
-                    <div class="text-content"><h4>Enter a Valid Username</h4><p>Click the button below to proceed.</p></div>
-                </div>
-                <div class="list-item">
-                    <div class="icon-check"><i class="fa-regular fa-circle-check"></i></div>
-                    <div class="text-content"><h4>Complete 1-2 Offers</h4><p>Finish a few simple app installs or surveys to verify.</p></div>
-                </div>
-                <div class="list-item">
-                    <div class="icon-check"><i class="fa-regular fa-circle-check"></i></div>
-                    <div class="text-content"><h4>Get Rewarded</h4><p>Upon successful completion of the deals, you will be immediately eligible.</p></div>
-                </div>
-            </div>
-
-            <button class="claim-btn" onclick="window.location.href='https://offertrk.org/cl/i/34jvrm'">
-                <i class="fa-solid fa-lock-open"></i> Verify & Continue
-            </button>
-        </div>
-
-    </section>
-
-  <div class="modal" id="how-modal">
-    <div class="modal-content">
-      <button class="close-btn" id="modal-close">✕</button>
-      <h2>📘 How it works</h2>
-      <p>
-        <strong>1.</strong> Enter your Roblox username.<br>
-        <strong>2.</strong> Select your desired Robux tier.<br>
-        <strong>3.</strong> Complete the quick verification task.<br>
-        <strong>4.</strong> Enjoy your robux in your account!
-      </p>
-      <br>
-      <p style="font-size:13px;color:#4a5260;">⚠️ Demo for educational purposes only.</p>
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-cart-shopping" style="color: #e31837;"></i>
+        <span id="toast-text">User claimed reward</span>
     </div>
-  </div>
 
-  <footer class="footer">
-    <span>Disclaimer</span>
-    <p>This is an independent project. We are not affiliated with, endorsed, or sponsored by Roblox Corporation. All trademarks belong to their respective owners.</p>
-  </footer>
+    <div class="mobile-container">
+        
+        <div class="live-badge">
+            <div class="blink-dot"></div>
+            LIVE: <span id="viewer-count">1,245</span> viewing
+        </div>
 
-    <!-- ===== MAIN SCRIPTS ===== -->
+        <div class="gift-card-img">
+            <div class="logo-text"><i class="fa-solid fa-star"></i> SHOPPING REWARDS</div>
+            <i class="fa-solid fa-cart-shopping shopping-icon"></i>
+            <div class="price-tag">$500</div>
+        </div>
+
+        <h1>Target Gift Card</h1>
+        <p class="subtitle">Complete the steps below to unlock your shopping spree</p>
+
+        <div class="info-card">
+            <div class="card-header">Quick Start Guide</div>
+            <div class="list-item">
+                <div class="icon-check"><i class="fa-solid fa-check"></i></div>
+                <div class="text-content"><h4>Complete 4-5 deals</h4><p>More deals, bigger reward</p></div>
+            </div>
+            <div class="list-item">
+                <div class="icon-check"><i class="fa-solid fa-check"></i></div>
+                <div class="text-content"><h4>Enter a valid email</h4><p>For instant code delivery</p></div>
+            </div>
+            <div class="list-item">
+                <div class="icon-check"><i class="fa-solid fa-check"></i></div>
+                <div class="text-content"><h4>Must be 18 years or older</h4><p>Required to participate</p></div>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <div class="card-header">Common Questions</div>
+            
+            <div class="question-item" onclick="toggleAnswer(this)">
+                <div class="q-header">
+                    <span>How long do the deals take?</span>
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <div class="q-answer">
+                    Usually 15-30 minutes. You need to complete the required number of deals to verify your status.
+                </div>
+            </div>
+
+            <div class="question-item" onclick="toggleAnswer(this)">
+                <div class="q-header">
+                    <span>What kind of deals are included?</span>
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <div class="q-answer">
+                    Free trials, app installs, surveys, and deals.
+                </div>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <div class="card-header">
+                Live Comments <span style="font-size: 0.8rem; color: #e31837;">● Live</span>
+            </div>
+            
+            <div class="live-feed-container">
+                <div class="feed-overlay"></div>
+                <div class="feed-scroll-area" id="feedArea">
+                </div>
+            </div>
+
+            <div class="input-area">
+                <input type="text" id="userComment" class="live-input" placeholder="Write a comment...">
+                <button class="send-btn" onclick="postUserComment()"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="sticky-footer">
+        <button class="claim-btn" onclick="window.location.href='https://trkoffer.net/cl/i/34jvrm'">Claim $500 Now</button>
+    </div>
+
     <script>
-        (function() {
-            'use strict';
+        // --- FAQ TOGGLE LOGIC ---
+        function toggleAnswer(element) {
+            element.classList.toggle('active');
+        }
 
-            // === Elements ===
-            const usernameInput = document.getElementById('username-input');
-            const continueBtn = document.getElementById('continue-btn');
+        // --- 1. THE USER PROVIDED DATABASE (100 COMMENTS UPDATED FOR GENERAL MERCHANDISE) ---
+        const reviewDatabase = [
+            "bruh is this real or what?",
+            "works fine for me.",
+            "waiting on email.",
+            "finally getting that new espresso machine!",
+            "I was stuck on the last step.",
+            "cart secured.",
+            "does it work on iphone?",
+            "Just ordered a new iPad. Ty!!",
+            "Anyone from Cali here?",
+            "Has anyone tried the cashapp option?",
+            "got my code. finally.",
+            "checking balance...",
+            "Can I just get cash instead of the card?",
+            "patience bro, it takes like 20 mins.",
+            "i need that new home decor so bad rn",
+            "Is the $500 card real or just the small ones?",
+            "worth it for free groceries tho",
+            "best electronics section?",
+            "getting a massive haul for my girls bday",
+            "man i’m just here for the comments",
+            "how long does the email take to come?",
+            "site is a bit slow rn",
+            "i hate downloading games ugh",
+            "The home section here is the best don't @ me",
+            "Just paid for my entire cart with this. Clutccchhh.",
+            "took like 2 mins for me.",
+            "going to get a huge haul rn",
+            "nice",
+            "scam?",
+            "does this work in canada?",
+            "just finished the tasks. took forever.",
+            "boring",
+            "Wait, do I have to do all the deals to get the $500?",
+            "trash week tbh but free is free",
+            "delivery or pickup?",
+            "try a different email.",
+            "omg i got the $500 one. my cart is full lol",
+            "yeah cashapp is faster than the gift code.",
+            "it’s legit but the survey is boring af.",
+            "My sister got the $500 one but she had to play games for like 2 hours.",
+            "i’m literally broke looking at my cart",
+            "mine was pending for like 5 mins then cleared.",
+            "sending this to my mom so she can get groceries",
+            "wait i closed the tab by accident can i go back?",
+            "Did anyone else get the $50 bonus?",
+            "yeah it works on iphone i just did it.",
+            "don't skip the verify part guys",
+            "do i have to be 18?",
+            "code sent to email. easy.",
+            "Dallas here.",
+            "my cart is ready",
+            "US only ig.",
+            "this is taking too long",
+            "im doing this while in class lol",
+            "works for both i think.",
+            "Why does it ask for my zip code?",
+            "cap",
+            "Mine says pending??",
+            "secured the bag 🛍️",
+            "Just to see if there's a store near u.",
+            "too many people doing it prolly",
+            "check your history and click it again, it saves progress.",
+            "do the apps have viruses?",
+            "refreshing the page",
+            "just refresh if it gets stuck, that happened to me.",
+            "sweet thanks",
+            "going to buy so much stuff for my room lol",
+            "Click the button at the bottom after u finish the tasks.",
+            "nah they are just normal app store games.",
+            "not a scam just tedious. u gotta actually do the offers.",
+            "received! getting the new Stanley cup.",
+            "free stuff is free stuff.",
+            "first time trying this, hope it works",
+            "Yeah there is a cash option at the end if u dont want the gift card.",
+            "ok got it.",
+            "LA here. it works.",
+            "no cap i just redeemed it online.",
+            "yeah i got the bonus for finishing the extra survey.",
+            "how do i claim it?",
+            "Anyone from Texas?",
+            "yeah just for verification code.",
+            "Yes u have to do them all, just download the apps and delete them later.",
+            "I tried yesterday and it didn't work.",
+            "done.",
+            "it asked for my phone number is that safe?",
+            "checking balance...",
+            "just give it a min",
+            "works on iphone",
+            "nice",
+            "took forever.",
+            "boring",
+            "code sent",
+            "free is free",
+            "refreshing",
+            "works fine",
+            "waiting on email",
+            "easy",
+            "scam?",
+            "US only",
+            "Clutccchhh"
+        ];
 
-            const cardUsername = document.getElementById('card-username');
-            const cardSearching = document.getElementById('card-searching');
-            const cardAmount = document.getElementById('card-amount');
-            const cardSending = document.getElementById('card-sending');
-            const cardVerify = document.getElementById('card-verify');
-
-            const searchingText = document.getElementById('searching-text');
-            const sendingText = document.getElementById('sending-text');
-
-            const amountButtons = document.querySelectorAll('.reward-option');
-            const modal = document.getElementById('how-modal');
-            const modalBtn = document.getElementById('how-it-works-btn');
-            const modalClose = document.getElementById('modal-close');
-
-            let currentUsername = '';
-
-            // === Helpers ===
-            function showCard(card) {
-                document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
-                card.classList.add('active');
+        // Shuffle function to mix the categories naturally
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
             }
+        }
+        shuffleArray(reviewDatabase);
 
-            function sleep(ms) {
-                return new Promise(resolve => setTimeout(resolve, ms));
+        // Mix of real-sounding names, nicknames, and "user" types
+        const names = [
+            "Jordan S.", "Mikey P.", "Sarah J.", "Ash_Tray", "BigMike", 
+            "Emily Rose", "David K.", "Jess_W", "Chris_B", "Mandy99",
+            "Latoya J.", "Maria_Garcia", "Bella C.", "User8821",
+            "Sophie L.", "Ethan M.", "Liv_P", "Liam N.", "Ava K.",
+            "Noah J.", "Izzy D.", "Mason F.", "Mia H.", "TargetFan",
+            "Charlie Z.", "Will X.", "Amy C.", "James V.", "Harper B.",
+            "DealsHunter", "J-Lo", "User1234", "CryptoKing", "TargetShopper",
+            "MomOf3", "BrokeStudent", "GamerGuy99", "SarahBear", "Jason D.",
+            "Kanye_West_Real", "TayTay", "BieberFan", "Drizzy", "Cardi B",
+            "Nicki", "QueenB", "Jay", "Riri", "Adele"
+        ];
+
+        // Updated colors to fit Retail Theme
+        const colors = ['#e31837', '#900014', '#1d1d1d', '#555', '#2C3E50', '#8E44AD'];
+
+        // --- 2. LIVE FEED LOGIC ---
+        const feedArea = document.getElementById('feedArea');
+
+        function createReviewElement(name, text, isUser = false) {
+            const div = document.createElement('div');
+            div.className = 'review-bubble';
+            
+            // Get Initials
+            let initials = name.substring(0,2).toUpperCase();
+            if(name.includes(' ')) {
+                 initials = name.split(' ').map(n => n[0]).join('').substring(0,2).toUpperCase();
             }
+            
+            let color = isUser ? '#000' : colors[Math.floor(Math.random() * colors.length)];
+            
+            div.innerHTML = `
+                <div class="rv-avatar" style="background: ${color}">${initials}</div>
+                <div class="rv-content">
+                    <div class="rv-name">${name}</div>
+                    <div class="rv-text">${text}</div>
+                    <span class="rv-time">Just now</span>
+                </div>
+            `;
+            return div;
+        }
 
-            // === Toast Notification ===
-            function showToast(message, type) {
-                let toast = document.getElementById('toast');
-                if (!toast) {
-                    toast = document.createElement('div');
-                    toast.id = 'toast';
-                    document.body.appendChild(toast);
-                }
+        function addReviewToFeed(name, text) {
+            const review = createReviewElement(name, text);
+            feedArea.appendChild(review);
+            
+            // Auto Scroll to bottom
+            feedArea.scrollTop = feedArea.scrollHeight;
 
-                const icon = type === 'success' ? '✅' : type === 'error' ? '❌' : '⚠️';
-                toast.innerHTML = `
-                    <span style="font-size: 1.4rem;">${icon}</span>
-                    <span style="font-weight: 500; font-size: 0.95rem;">${message}</span>
-                `;
-                toast.style.borderLeftColor = type === 'success' ? '#00b06f' : type === 'error' ? '#ff4757' : '#ffa502';
-                toast.style.opacity = '1';
-                toast.style.transform = 'translateY(0)';
-                toast.style.pointerEvents = 'auto';
-
-                clearTimeout(toast._timer);
-                toast._timer = setTimeout(() => {
-                    toast.style.opacity = '0';
-                    toast.style.transform = 'translateY(40px)';
-                    toast.style.pointerEvents = 'none';
-                }, 4000);
+            // Keep DOM light
+            if (feedArea.children.length > 50) {
+                feedArea.removeChild(feedArea.firstChild);
             }
+        }
 
-            // === 1. CONTINUE → SEARCH ===
-            continueBtn.addEventListener('click', async () => {
-                const val = usernameInput.value.trim();
-                if (val.length < 3) {
-                    showToast('Please enter a valid username (at least 3 characters)', 'error');
-                    usernameInput.focus();
-                    return;
-                }
-                currentUsername = val;
-                showCard(cardSearching);
-                searchingText.innerHTML = `Searching for <b>${currentUsername}</b> ...`;
-                await sleep(1800);
-                showCard(cardAmount);
-                showToast(`Welcome ${currentUsername}! Choose your tier`, 'success');
-            });
+        // --- 3. SIMULATE BUSY TRAFFIC (With Random Delays) ---
+        let reviewIndex = 0;
+        function scheduleNextReview() {
+            // Random delay between 800ms and 3000ms to feel human
+            const delay = Math.floor(Math.random() * 2200) + 800;
+            setTimeout(() => {
+                const text = reviewDatabase[reviewIndex % reviewDatabase.length];
+                const name = names[Math.floor(Math.random() * names.length)];
+                
+                addReviewToFeed(name, text);
+                reviewIndex++;
+                
+                scheduleNextReview();
+            }, delay);
+        }
 
-            usernameInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') continueBtn.click();
-            });
+        // Initialize with a few starter comments
+        addReviewToFeed("Sarah J.", "my cart is literally $400 rn I need this to work");
+        addReviewToFeed("DealsHunter", "Just paid for my entire haul with this. Clutccchhh.");
+        addReviewToFeed("Ash_Tray", "yooo just got the email! hype");
+        
+        scheduleNextReview();
 
-            // === 2. TIER SELECT → SENDING ===
-            amountButtons.forEach(btn => {
-                btn.addEventListener('click', async () => {
-                    const amount = btn.getAttribute('data-amount') || '???';
-                    showCard(cardSending);
-                    sendingText.innerHTML = `Sending <b>${amount}</b> robux to <b>${currentUsername}</b> ...`;
-                    await sleep(2000);
-                    showCard(cardVerify);
-                    showToast(`Security Verification Required!`, 'warning');
-                });
-            });
+        // --- 4. USER INTERACTION ---
+        function postUserComment() {
+            const input = document.getElementById('userComment');
+            const text = input.value.trim();
+            if (text) {
+                addReviewToFeed("You", text, true);
+                input.value = "";
+            }
+        }
 
-            // === 3. MODAL ===
-            modalBtn.addEventListener('click', () => modal.classList.add('open'));
-            modalClose.addEventListener('click', () => modal.classList.remove('open'));
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) modal.classList.remove('open');
-            });
+        // --- 5. VIEWER COUNT FLUCTUATION ---
+        const viewerCountEl = document.getElementById('viewer-count');
+        let viewers = 1245;
 
-            // === 4. Prevent zoom on double tap (iOS) ===
-            let lastTouchEnd = 0;
-            document.addEventListener('touchend', function(e) {
-                const now = Date.now();
-                if (now - lastTouchEnd <= 300) {
-                    e.preventDefault();
-                }
-                lastTouchEnd = now;
-            }, false);
+        setInterval(() => {
+            const change = Math.floor(Math.random() * 15) - 5; 
+            viewers += change;
+            // Format number with commas
+            viewerCountEl.innerText = viewers.toLocaleString();
+        }, 3000);
 
-        })();
+        // --- 6. POPUP NOTIFICATION (Toast) ---
+        function showToast() {
+            const toast = document.getElementById('toast');
+            const toastText = document.getElementById('toast-text');
+            const cities = ["NY", "CA", "TX", "FL", "OH", "IL", "GA", "WA", "AZ"];
+            const city = cities[Math.floor(Math.random() * cities.length)];
+            const user = names[Math.floor(Math.random() * names.length)].split(' ')[0];
+            
+            toastText.innerHTML = `<strong>${user}</strong> (from ${city}) claimed <strong>$500</strong>`;
+            
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 4000);
+        }
+
+        setInterval(showToast, 7000);
+
     </script>
 </body>
 </html>
