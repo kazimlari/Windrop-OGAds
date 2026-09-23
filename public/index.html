@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spooky Retail Reward - LIVE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Retail Shopping Reward - LIVE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -12,14 +12,13 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #121212; /* Dark spooky background */
-            color: #f0f0f0;
+            background-color: #f4f4f4; /* Soft gray */
+            color: #333;
             display: flex;
             justify-content: center;
             min-height: 100vh;
             padding-bottom: 90px;
             overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% 0%, #3a0000 0%, #121212 60%);
         }
 
         .mobile-container {
@@ -33,120 +32,107 @@
 
         /* --- Live Badge --- */
         .live-badge {
-            background: #e31837; /* Target Red */
-            color: #ffffff;
+            background: #1d1d1d;
+            color: white;
             padding: 5px 12px;
             border-radius: 20px;
             font-size: 0.75rem;
-            font-weight: 800;
+            font-weight: 700;
             display: flex;
             align-items: center;
             gap: 6px;
             margin-bottom: 10px;
-            box-shadow: 0 2px 8px rgba(227, 24, 55, 0.4);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
             align-self: flex-start;
         }
         .blink-dot {
             width: 8px;
             height: 8px;
-            background: #ffffff;
+            background: #ff4d4d;
             border-radius: 50%;
             animation: blink 1.5s infinite;
         }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
         /* --- Hero Art --- */
         .gift-card-img {
             width: 100%;
             border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(227, 24, 55, 0.4);
-            /* Target Red to Dark Crimson Gradient */
-            background: linear-gradient(135deg, #e31837 0%, #600008 100%);
+            box-shadow: 0 10px 25px rgba(227, 24, 55, 0.25);
+            /* Red Gradient */
+            background: linear-gradient(135deg, #e31837 0%, #900014 100%);
             aspect-ratio: 1.6;
             display: flex;
             align-items: center; justify-content: center;
             position: relative; overflow: hidden; margin-bottom: 20px;
-            border: 2px solid #8a0b1f;
+            border: 1px solid rgba(0,0,0,0.05);
         }
         
-        .spooky-icon {
+        .shopping-icon {
             font-size: 80px;
             color: #ffffff;
-            text-shadow: 0 0 15px rgba(255,255,255,0.4);
-            animation: floatGhost 3s ease-in-out infinite;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+            animation: floatCart 3s ease-in-out infinite;
         }
 
-        @keyframes floatGhost {
-            0% { transform: translateY(0px) rotate(0deg) scale(1); }
-            50% { transform: translateY(-8px) rotate(3deg) scale(1.05); }
-            100% { transform: translateY(0px) rotate(0deg) scale(1); }
+        @keyframes floatCart {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
 
         .price-tag { 
             position: absolute;
             bottom: 15px; right: 15px; 
             color: #e31837; 
-            font-family: 'Creepster', cursive;
-            letter-spacing: 2px;
-            font-weight: 400; font-size: 1.8rem; 
-            background: rgba(18, 18, 18, 0.95);
-            padding: 5px 12px;
+            font-weight: 900; font-size: 1.4rem; 
+            background: rgba(255,255,255,0.9);
+            padding: 5px 10px;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            border: 1px solid #e31837;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         .logo-text { 
             position: absolute;
             top: 15px; left: 15px;
             color: #ffffff; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.5px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
         }
 
-        h1 { 
-            font-family: 'Creepster', cursive;
-            font-size: 2.2rem; 
-            letter-spacing: 1px;
-            text-align: center; 
-            color: #e31837; 
-            margin-bottom: 5px; 
-            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-        }
-        .subtitle { font-size: 0.9rem; color: #aaa; text-align: center; margin-bottom: 20px; }
+        h1 { font-size: 1.4rem; font-weight: 800; text-align: center; color: #111; margin-bottom: 5px; }
+        .subtitle { font-size: 0.9rem; color: #666; text-align: center; margin-bottom: 20px; }
 
         /* --- Cards --- */
         .info-card {
-            background: #1a1a1a;
+            background: white;
             width: 100%; border-radius: 16px;
-            padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.02);
             margin-bottom: 12px;
-            border: 1px solid #333;
         }
-        .card-header { color: #e31837; font-weight: 700; font-size: 1rem; margin-bottom: 15px; display: flex; justify-content: space-between; }
+        .card-header { color: #1d1d1d; font-weight: 700; font-size: 1rem; margin-bottom: 15px; display: flex; justify-content: space-between; }
 
         /* Checklist */
         .list-item { display: flex; align-items: flex-start; margin-bottom: 15px; }
         .icon-check { 
             background-color: #e31837;
-            color: #fff;
+            color: #ffffff;
             width: 20px;
             height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; margin-right: 12px; flex-shrink: 0;
             margin-top: 2px;
-            box-shadow: 0 0 8px rgba(227, 24, 55, 0.6);
         }
-        .text-content h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 2px; color: #fff; }
-        .text-content p { font-size: 0.75rem; color: #888; }
+        .text-content h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 2px; }
+        .text-content p { font-size: 0.75rem; color: #777; }
 
         /* Common Questions */
-        .question-item { padding: 12px 0; border-bottom: 1px solid #333; cursor: pointer; }
+        .question-item { padding: 12px 0; border-bottom: 1px solid #eee; cursor: pointer; }
         .question-item:last-child { border-bottom: none; }
-        .q-header { display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 0.9rem; color: #ddd; }
+        .q-header { display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 0.9rem; }
         .q-answer { 
             max-height: 0;
             overflow: hidden; transition: max-height 0.3s ease; 
-            color: #999; font-size: 0.85rem; margin-top: 0;
+            color: #666; font-size: 0.85rem; margin-top: 0;
         }
         .question-item.active .q-answer { max-height: 100px; margin-top: 10px; }
-        .question-item.active .fa-plus { transform: rotate(45deg); transition: transform 0.3s; color: #e31837; }
+        .question-item.active .fa-plus { transform: rotate(45deg); transition: transform 0.3s; }
 
         /* --- Live Feed Reviews --- */
         .live-feed-container {
@@ -161,7 +147,7 @@
         .feed-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 60px;
-            background: linear-gradient(to bottom, #1a1a1a 0%, rgba(26,26,26,0) 100%);
+            background: linear-gradient(to bottom, #ffffff 0%, rgba(255,255,255,0) 100%);
             z-index: 5; pointer-events: none;
         }
 
@@ -190,47 +176,41 @@
             color: white; font-weight: 700; font-size: 0.75rem;
             display: flex; align-items: center; justify-content: center;
             flex-shrink: 0; text-transform: uppercase;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
 
         .rv-content {
-            background: #252525;
+            background: #f1f2f6;
             padding: 8px 12px;
             border-radius: 14px; border-top-left-radius: 2px;
             font-size: 0.8rem;
-            border: 1px solid #333;
         }
 
-        .rv-name { font-weight: 700; font-size: 0.75rem; color: #e31837; margin-bottom: 2px; }
-        .rv-text { color: #ccc; line-height: 1.3; }
-        .rv-time { font-size: 0.65rem; color: #666; margin-top: 4px; display: block; }
+        .rv-name { font-weight: 700; font-size: 0.75rem; color: #333; margin-bottom: 2px; }
+        .rv-text { color: #444; line-height: 1.3; }
+        .rv-time { font-size: 0.65rem; color: #888; margin-top: 4px; display: block; }
 
         /* Write Review Input */
         .input-area {
             display: flex;
-            gap: 8px; margin-top: 15px; border-top: 1px solid #333; padding-top: 10px;
+            gap: 8px; margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;
         }
         .live-input {
             flex: 1;
-            padding: 10px; border-radius: 20px; border: 1px solid #444;
-            font-size: 0.85rem; background: #111; color: #fff;
+            padding: 10px; border-radius: 20px; border: 1px solid #ddd;
+            font-size: 0.85rem; background: #f9f9f9;
         }
-        .live-input::placeholder { color: #666; }
-        
         .send-btn {
             background: #e31837;
-            color: #fff; border: none; width: 36px; height: 36px;
+            color: white; border: none; width: 36px; height: 36px;
             border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 10px rgba(227, 24, 55, 0.3);
         }
 
         /* --- Footer --- */
         .sticky-footer {
             position: fixed;
             bottom: 0; left: 0; width: 100%;
-            background: #111; padding: 15px;
-            box-shadow: 0 -4px 15px rgba(0,0,0,0.6);
-            border-top: 1px solid #333;
+            background: white; padding: 15px;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
             display: flex; justify-content: center;
             z-index: 100;
         }
@@ -239,35 +219,32 @@
             color: #ffffff; 
             width: 100%; max-width: 400px;
             padding: 16px; border: none; border-radius: 12px;
-            font-size: 1.2rem; font-weight: 800; cursor: pointer;
-            box-shadow: 0 0 20px rgba(227, 24, 55, 0.4);
+            font-size: 1.2rem; font-weight: 700; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(227, 24, 55, 0.4);
             animation: pulseBtn 2s infinite;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
-        @keyframes pulseBtn { 0% { transform: scale(1); box-shadow: 0 0 10px rgba(227, 24, 55, 0.4); } 50% { transform: scale(1.02); box-shadow: 0 0 25px rgba(227, 24, 55, 0.7); } 100% { transform: scale(1); box-shadow: 0 0 10px rgba(227, 24, 55, 0.4); } }
+        @keyframes pulseBtn { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
 
         /* --- Toast Notification --- */
         .toast {
             position: fixed;
             top: 15px; right: 15px;
-            background: rgba(30, 30, 30, 0.95); color: #fff;
-            padding: 12px 18px; border-radius: 8px;
-            border-left: 4px solid #e31837;
-            font-size: 0.8rem; display: flex; align-items: center;
-            gap: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.9); color: white;
+            padding: 10px 15px; border-radius: 8px;
+            font-size: 0.75rem; display: flex; align-items: center;
+            gap: 10px;
             transform: translateX(150%); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 999;
         }
         .toast.show { transform: translateX(0); }
+        .toast img { width: 20px; height: 20px; border-radius: 50%; }
 
     </style>
 </head>
 <body>
 
     <div class="toast" id="toast">
-        <i class="fa-solid fa-cart-shopping" style="color: #e31837; font-size: 1.2rem;"></i>
+        <i class="fa-solid fa-cart-shopping" style="color: #e31837;"></i>
         <span id="toast-text">User claimed reward</span>
     </div>
 
@@ -275,40 +252,36 @@
         
         <div class="live-badge">
             <div class="blink-dot"></div>
-            LIVE: <span id="viewer-count">6,660</span> viewing
+            LIVE: <span id="viewer-count">1,245</span> viewing
         </div>
 
         <div class="gift-card-img">
-            <div class="logo-text"><i class="fa-solid fa-spider"></i> SPOOKY RETAIL RUN</div>
-            <!-- Using a generic shopping cart combined with a ghost icon to fit the theme without using the actual logo -->
-            <span class="fa-stack spooky-icon" style="font-size: 40px; margin-bottom: 10px;">
-                <i class="fa-solid fa-ghost fa-stack-2x" style="color: rgba(255,255,255,0.1);"></i>
-                <i class="fa-solid fa-cart-shopping fa-stack-1x" style="color: white; transform: scale(1.2);"></i>
-            </span>
+            <div class="logo-text"><i class="fa-solid fa-star"></i> SHOPPING REWARDS</div>
+            <i class="fa-solid fa-cart-shopping shopping-icon"></i>
             <div class="price-tag">$500</div>
         </div>
 
-        <h1>Target Halloween Haul</h1>
-        <p class="subtitle">Complete the steps below to unlock your haunted shopping spree</p>
+        <h1>Target Gift Card</h1>
+        <p class="subtitle">Complete the steps below to unlock your shopping spree</p>
 
         <div class="info-card">
-            <div class="card-header">Survival Guide</div>
+            <div class="card-header">Quick Start Guide</div>
             <div class="list-item">
                 <div class="icon-check"><i class="fa-solid fa-check"></i></div>
-                <div class="text-content"><h4>Complete 4-5 spooky deals</h4><p>More deals, bigger reward</p></div>
+                <div class="text-content"><h4>Complete 4-5 deals</h4><p>More deals, bigger reward</p></div>
             </div>
             <div class="list-item">
                 <div class="icon-check"><i class="fa-solid fa-check"></i></div>
-                <div class="text-content"><h4>Enter a valid email</h4><p>For instant cursed code delivery</p></div>
+                <div class="text-content"><h4>Enter a valid email</h4><p>For instant code delivery</p></div>
             </div>
             <div class="list-item">
                 <div class="icon-check"><i class="fa-solid fa-check"></i></div>
-                <div class="text-content"><h4>Must be 18 years or older</h4><p>Required to enter the haunted aisles</p></div>
+                <div class="text-content"><h4>Must be 18 years or older</h4><p>Required to participate</p></div>
             </div>
         </div>
 
         <div class="info-card">
-            <div class="card-header">Witching Hour FAQ</div>
+            <div class="card-header">Common Questions</div>
             
             <div class="question-item" onclick="toggleAnswer(this)">
                 <div class="q-header">
@@ -316,7 +289,7 @@
                     <i class="fa-solid fa-plus"></i>
                 </div>
                 <div class="q-answer">
-                    Usually 15-30 minutes before midnight. Complete the required deals to verify your status.
+                    Usually 15-30 minutes. You need to complete the required number of deals to verify your status.
                 </div>
             </div>
 
@@ -326,14 +299,14 @@
                     <i class="fa-solid fa-plus"></i>
                 </div>
                 <div class="q-answer">
-                    Free trials, app installs, and eerie surveys.
+                    Free trials, app installs, surveys, and deals.
                 </div>
             </div>
         </div>
 
         <div class="info-card">
             <div class="card-header">
-                Live Chat <span style="font-size: 0.8rem; color: #e31837;">● Live</span>
+                Live Comments <span style="font-size: 0.8rem; color: #e31837;">● Live</span>
             </div>
             
             <div class="live-feed-container">
@@ -343,7 +316,7 @@
             </div>
 
             <div class="input-area">
-                <input type="text" id="userComment" class="live-input" placeholder="Summon a comment...">
+                <input type="text" id="userComment" class="live-input" placeholder="Write a comment...">
                 <button class="send-btn" onclick="postUserComment()"><i class="fa-solid fa-paper-plane"></i></button>
             </div>
         </div>
@@ -360,34 +333,35 @@
             element.classList.toggle('active');
         }
 
-        // --- TARGET + HALLOWEEN THEMED COMMENTS DATABASE ---
+        // --- 1. THE USER PROVIDED DATABASE (100 COMMENTS UPDATED FOR GENERAL MERCHANDISE) ---
         const reviewDatabase = [
             "bruh is this real or what?",
             "works fine for me.",
             "waiting on email.",
-            "finally getting that giant Lewis pumpkin for my yard!",
+            "finally getting that new espresso machine!",
             "I was stuck on the last step.",
-            "cart secured for spooky season 🎃",
+            "cart secured.",
             "does it work on iphone?",
-            "Just cleared out the Dollar Spot. Ty!!",
-            "Anyone from Salem here? 🦇",
+            "Just ordered a new iPad. Ty!!",
+            "Anyone from Cali here?",
             "Has anyone tried the cashapp option?",
             "got my code. finally.",
             "checking balance...",
             "Can I just get cash instead of the card?",
             "patience bro, it takes like 20 mins.",
-            "i need that new Hyde & EEK decor so bad rn",
+            "i need that new home decor so bad rn",
             "Is the $500 card real or just the small ones?",
-            "worth it for free costumes and groceries tho",
-            "getting a massive haul for my halloween party",
+            "worth it for free groceries tho",
+            "best electronics section?",
+            "getting a massive haul for my girls bday",
             "man i’m just here for the comments",
             "how long does the email take to come?",
-            "site is a bit slow rn, must be ghosts",
+            "site is a bit slow rn",
             "i hate downloading games ugh",
-            "Target's spooky decor section is the best don't @ me",
+            "The home section here is the best don't @ me",
             "Just paid for my entire cart with this. Clutccchhh.",
             "took like 2 mins for me.",
-            "going to get a huge haul in the seasonal aisles rn",
+            "going to get a huge haul rn",
             "nice",
             "scam?",
             "does this work in canada?",
@@ -397,21 +371,21 @@
             "trash week tbh but free is free",
             "delivery or pickup?",
             "try a different email.",
-            "omg i got the $500 one. my red cart is full of skeletons lol",
+            "omg i got the $500 one. my cart is full lol",
             "yeah cashapp is faster than the gift code.",
             "it’s legit but the survey is boring af.",
             "My sister got the $500 one but she had to play games for like 2 hours.",
             "i’m literally broke looking at my cart",
             "mine was pending for like 5 mins then cleared.",
-            "sending this to my mom so she can buy treats",
+            "sending this to my mom so she can get groceries",
             "wait i closed the tab by accident can i go back?",
             "Did anyone else get the $50 bonus?",
             "yeah it works on iphone i just did it.",
             "don't skip the verify part guys",
             "do i have to be 18?",
             "code sent to email. easy.",
-            "Salem here.",
-            "my cart is ready for halloween",
+            "Dallas here.",
+            "my cart is ready",
             "US only ig.",
             "this is taking too long",
             "im doing this while in class lol",
@@ -419,7 +393,7 @@
             "Why does it ask for my zip code?",
             "cap",
             "Mine says pending??",
-            "secured the bag 🛍️👻",
+            "secured the bag 🛍️",
             "Just to see if there's a store near u.",
             "too many people doing it prolly",
             "check your history and click it again, it saves progress.",
@@ -427,11 +401,11 @@
             "refreshing the page",
             "just refresh if it gets stuck, that happened to me.",
             "sweet thanks",
-            "going to buy so much stuff for my dorm lol",
+            "going to buy so much stuff for my room lol",
             "Click the button at the bottom after u finish the tasks.",
             "nah they are just normal app store games.",
             "not a scam just tedious. u gotta actually do the offers.",
-            "received! getting matching family costumes.",
+            "received! getting the new Stanley cup.",
             "free stuff is free stuff.",
             "first time trying this, hope it works",
             "Yeah there is a cash option at the end if u dont want the gift card.",
@@ -474,20 +448,20 @@
 
         // Mix of real-sounding names, nicknames, and "user" types
         const names = [
-            "GhostHunter", "Mikey P.", "Sarah J.", "Ash_Tray", "BigMike", 
-            "Emily Rose", "VampireK", "Jess_W", "Chris_B", "Mandy99",
-            "Latoya J.", "Maria_Garcia", "Bella C.", "TargetFan",
+            "Jordan S.", "Mikey P.", "Sarah J.", "Ash_Tray", "BigMike", 
+            "Emily Rose", "David K.", "Jess_W", "Chris_B", "Mandy99",
+            "Latoya J.", "Maria_Garcia", "Bella C.", "User8821",
             "Sophie L.", "Ethan M.", "Liv_P", "Liam N.", "Ava K.",
-            "Noah J.", "Izzy D.", "Mason F.", "SpookyMia", "GhoulishGuy",
+            "Noah J.", "Izzy D.", "Mason F.", "Mia H.", "TargetFan",
             "Charlie Z.", "Will X.", "Amy C.", "James V.", "Harper B.",
-            "PumpkinKing", "J-Lo", "DealsHunter", "CryptoKing", "WitchyVibes",
+            "DealsHunter", "J-Lo", "User1234", "CryptoKing", "TargetShopper",
             "MomOf3", "BrokeStudent", "GamerGuy99", "SarahBear", "Jason D.",
-            "TargetShopper", "TayTay", "BieberFan", "Drizzy", "Cardi B",
+            "Kanye_West_Real", "TayTay", "BieberFan", "Drizzy", "Cardi B",
             "Nicki", "QueenB", "Jay", "Riri", "Adele"
         ];
 
-        // Target Red & Spooky colors for avatars
-        const colors = ['#e31837', '#8a0b1f', '#4a0000', '#111111', '#333333', '#e31837'];
+        // Updated colors to fit Retail Theme
+        const colors = ['#e31837', '#900014', '#1d1d1d', '#555', '#2C3E50', '#8E44AD'];
 
         // --- 2. LIVE FEED LOGIC ---
         const feedArea = document.getElementById('feedArea');
@@ -502,11 +476,10 @@
                  initials = name.split(' ').map(n => n[0]).join('').substring(0,2).toUpperCase();
             }
             
-            let color = isUser ? '#e31837' : colors[Math.floor(Math.random() * colors.length)];
-            let avatarTextColor = '#fff';
+            let color = isUser ? '#000' : colors[Math.floor(Math.random() * colors.length)];
             
             div.innerHTML = `
-                <div class="rv-avatar" style="background: ${color}; color: ${avatarTextColor};">${initials}</div>
+                <div class="rv-avatar" style="background: ${color}">${initials}</div>
                 <div class="rv-content">
                     <div class="rv-name">${name}</div>
                     <div class="rv-text">${text}</div>
@@ -546,9 +519,9 @@
         }
 
         // Initialize with a few starter comments
-        addReviewToFeed("Sarah J.", "my red cart is literally full of decorations rn I need this to work 🎃");
-        addReviewToFeed("PumpkinKing", "Just paid for my entire halloween party haul with this. Clutccchhh.");
-        addReviewToFeed("Ash_Tray", "yooo just got the email! hype 👻");
+        addReviewToFeed("Sarah J.", "my cart is literally $400 rn I need this to work");
+        addReviewToFeed("DealsHunter", "Just paid for my entire haul with this. Clutccchhh.");
+        addReviewToFeed("Ash_Tray", "yooo just got the email! hype");
         
         scheduleNextReview();
 
@@ -564,11 +537,12 @@
 
         // --- 5. VIEWER COUNT FLUCTUATION ---
         const viewerCountEl = document.getElementById('viewer-count');
-        let viewers = 6660; // Spooky starting number
+        let viewers = 1245;
 
         setInterval(() => {
             const change = Math.floor(Math.random() * 15) - 5; 
             viewers += change;
+            // Format number with commas
             viewerCountEl.innerText = viewers.toLocaleString();
         }, 3000);
 
@@ -576,7 +550,7 @@
         function showToast() {
             const toast = document.getElementById('toast');
             const toastText = document.getElementById('toast-text');
-            const cities = ["Salem", "Sleepy Hollow", "NY", "CA", "TX", "FL", "OH", "IL", "GA", "WA", "AZ"];
+            const cities = ["NY", "CA", "TX", "FL", "OH", "IL", "GA", "WA", "AZ"];
             const city = cities[Math.floor(Math.random() * cities.length)];
             const user = names[Math.floor(Math.random() * names.length)].split(' ')[0];
             
