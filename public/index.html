@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retail Shopping Reward - LIVE</title>
+    <title>Retail Shopping Reward</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -17,7 +17,7 @@
             display: flex;
             justify-content: center;
             min-height: 100vh;
-            padding-bottom: 90px;
+            padding-bottom: 110px; /* Increased to account for disclaimer and sticky button */
             overflow-x: hidden;
         }
 
@@ -29,30 +29,6 @@
             flex-direction: column;
             align-items: center;
         }
-
-        /* --- Live Badge --- */
-        .live-badge {
-            background: #1d1d1d;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            align-self: flex-start;
-        }
-        .blink-dot {
-            width: 8px;
-            height: 8px;
-            background: #ff4d4d;
-            border-radius: 50%;
-            animation: blink 1.5s infinite;
-        }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
         /* --- Hero Art --- */
         .gift-card-img {
@@ -66,6 +42,7 @@
             align-items: center; justify-content: center;
             position: relative; overflow: hidden; margin-bottom: 20px;
             border: 1px solid rgba(0,0,0,0.05);
+            margin-top: 10px;
         }
         
         .shopping-icon {
@@ -134,75 +111,19 @@
         .question-item.active .q-answer { max-height: 100px; margin-top: 10px; }
         .question-item.active .fa-plus { transform: rotate(45deg); transition: transform 0.3s; }
 
-        /* --- Live Feed Reviews --- */
-        .live-feed-container {
-            height: 320px;
-            overflow-y: hidden;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+        /* --- Disclaimer Footer --- */
+        .disclaimer-footer {
+            font-size: 0.65rem;
+            color: #888;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            padding: 0 10px;
         }
-        
-        .feed-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 60px;
-            background: linear-gradient(to bottom, #ffffff 0%, rgba(255,255,255,0) 100%);
-            z-index: 5; pointer-events: none;
-        }
-
-        .feed-scroll-area {
-            display: flex;
-            flex-direction: column; gap: 12px;
-            overflow-y: auto; scroll-behavior: smooth; padding-top: 40px;
-        }
-        .feed-scroll-area::-webkit-scrollbar { display: none; }
-        
-        .review-bubble {
-            display: flex;
-            gap: 10px;
-            animation: slideIn 0.4s ease-out;
-            opacity: 0.95;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 0.95; transform: translateY(0); }
-        }
-
-        .rv-avatar {
-            width: 32px;
-            height: 32px; border-radius: 50%;
-            color: white; font-weight: 700; font-size: 0.75rem;
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0; text-transform: uppercase;
-        }
-
-        .rv-content {
-            background: #f1f2f6;
-            padding: 8px 12px;
-            border-radius: 14px; border-top-left-radius: 2px;
-            font-size: 0.8rem;
-        }
-
-        .rv-name { font-weight: 700; font-size: 0.75rem; color: #333; margin-bottom: 2px; }
-        .rv-text { color: #444; line-height: 1.3; }
-        .rv-time { font-size: 0.65rem; color: #888; margin-top: 4px; display: block; }
-
-        /* Write Review Input */
-        .input-area {
-            display: flex;
-            gap: 8px; margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;
-        }
-        .live-input {
-            flex: 1;
-            padding: 10px; border-radius: 20px; border: 1px solid #ddd;
-            font-size: 0.85rem; background: #f9f9f9;
-        }
-        .send-btn {
-            background: #e31837;
-            color: white; border: none; width: 36px; height: 36px;
-            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+        .disclaimer-footer a {
+            color: #666;
+            text-decoration: underline;
         }
 
         /* --- Footer --- */
@@ -224,37 +145,12 @@
             animation: pulseBtn 2s infinite;
         }
         @keyframes pulseBtn { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
-
-        /* --- Toast Notification --- */
-        .toast {
-            position: fixed;
-            top: 15px; right: 15px;
-            background: rgba(0,0,0,0.9); color: white;
-            padding: 10px 15px; border-radius: 8px;
-            font-size: 0.75rem; display: flex; align-items: center;
-            gap: 10px;
-            transform: translateX(150%); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 999;
-        }
-        .toast.show { transform: translateX(0); }
-        .toast img { width: 20px; height: 20px; border-radius: 50%; }
-
     </style>
 </head>
 <body>
 
-    <div class="toast" id="toast">
-        <i class="fa-solid fa-cart-shopping" style="color: #e31837;"></i>
-        <span id="toast-text">User claimed reward</span>
-    </div>
-
     <div class="mobile-container">
         
-        <div class="live-badge">
-            <div class="blink-dot"></div>
-            LIVE: <span id="viewer-count">1,245</span> viewing
-        </div>
-
         <div class="gift-card-img">
             <div class="logo-text"><i class="fa-solid fa-star"></i> SHOPPING REWARDS</div>
             <i class="fa-solid fa-cart-shopping shopping-icon"></i>
@@ -304,21 +200,9 @@
             </div>
         </div>
 
-        <div class="info-card">
-            <div class="card-header">
-                Live Comments <span style="font-size: 0.8rem; color: #e31837;">● Live</span>
-            </div>
-            
-            <div class="live-feed-container">
-                <div class="feed-overlay"></div>
-                <div class="feed-scroll-area" id="feedArea">
-                </div>
-            </div>
-
-            <div class="input-area">
-                <input type="text" id="userComment" class="live-input" placeholder="Write a comment...">
-                <button class="send-btn" onclick="postUserComment()"><i class="fa-solid fa-paper-plane"></i></button>
-            </div>
+        <!-- Disclaimer Section added here -->
+        <div class="disclaimer-footer">
+            <p><strong>Disclaimer:</strong> This website is an independent rewards program and is not affiliated with, sponsored by, or endorsed by Target Brands, Inc. or any other retailer. All trademarks and logos belong to their respective owners. Completion of multiple sponsor offers is required to claim the reward. Please review our <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a> for full details.</p>
         </div>
 
     </div>
@@ -332,236 +216,6 @@
         function toggleAnswer(element) {
             element.classList.toggle('active');
         }
-
-        // --- 1. THE USER PROVIDED DATABASE (100 COMMENTS UPDATED FOR GENERAL MERCHANDISE) ---
-        const reviewDatabase = [
-            "bruh is this real or what?",
-            "works fine for me.",
-            "waiting on email.",
-            "finally getting that new espresso machine!",
-            "I was stuck on the last step.",
-            "cart secured.",
-            "does it work on iphone?",
-            "Just ordered a new iPad. Ty!!",
-            "Anyone from Cali here?",
-            "Has anyone tried the cashapp option?",
-            "got my code. finally.",
-            "checking balance...",
-            "Can I just get cash instead of the card?",
-            "patience bro, it takes like 20 mins.",
-            "i need that new home decor so bad rn",
-            "Is the $500 card real or just the small ones?",
-            "worth it for free groceries tho",
-            "best electronics section?",
-            "getting a massive haul for my girls bday",
-            "man i’m just here for the comments",
-            "how long does the email take to come?",
-            "site is a bit slow rn",
-            "i hate downloading games ugh",
-            "The home section here is the best don't @ me",
-            "Just paid for my entire cart with this. Clutccchhh.",
-            "took like 2 mins for me.",
-            "going to get a huge haul rn",
-            "nice",
-            "scam?",
-            "does this work in canada?",
-            "just finished the tasks. took forever.",
-            "boring",
-            "Wait, do I have to do all the deals to get the $500?",
-            "trash week tbh but free is free",
-            "delivery or pickup?",
-            "try a different email.",
-            "omg i got the $500 one. my cart is full lol",
-            "yeah cashapp is faster than the gift code.",
-            "it’s legit but the survey is boring af.",
-            "My sister got the $500 one but she had to play games for like 2 hours.",
-            "i’m literally broke looking at my cart",
-            "mine was pending for like 5 mins then cleared.",
-            "sending this to my mom so she can get groceries",
-            "wait i closed the tab by accident can i go back?",
-            "Did anyone else get the $50 bonus?",
-            "yeah it works on iphone i just did it.",
-            "don't skip the verify part guys",
-            "do i have to be 18?",
-            "code sent to email. easy.",
-            "Dallas here.",
-            "my cart is ready",
-            "US only ig.",
-            "this is taking too long",
-            "im doing this while in class lol",
-            "works for both i think.",
-            "Why does it ask for my zip code?",
-            "cap",
-            "Mine says pending??",
-            "secured the bag 🛍️",
-            "Just to see if there's a store near u.",
-            "too many people doing it prolly",
-            "check your history and click it again, it saves progress.",
-            "do the apps have viruses?",
-            "refreshing the page",
-            "just refresh if it gets stuck, that happened to me.",
-            "sweet thanks",
-            "going to buy so much stuff for my room lol",
-            "Click the button at the bottom after u finish the tasks.",
-            "nah they are just normal app store games.",
-            "not a scam just tedious. u gotta actually do the offers.",
-            "received! getting the new Stanley cup.",
-            "free stuff is free stuff.",
-            "first time trying this, hope it works",
-            "Yeah there is a cash option at the end if u dont want the gift card.",
-            "ok got it.",
-            "LA here. it works.",
-            "no cap i just redeemed it online.",
-            "yeah i got the bonus for finishing the extra survey.",
-            "how do i claim it?",
-            "Anyone from Texas?",
-            "yeah just for verification code.",
-            "Yes u have to do them all, just download the apps and delete them later.",
-            "I tried yesterday and it didn't work.",
-            "done.",
-            "it asked for my phone number is that safe?",
-            "checking balance...",
-            "just give it a min",
-            "works on iphone",
-            "nice",
-            "took forever.",
-            "boring",
-            "code sent",
-            "free is free",
-            "refreshing",
-            "works fine",
-            "waiting on email",
-            "easy",
-            "scam?",
-            "US only",
-            "Clutccchhh"
-        ];
-
-        // Shuffle function to mix the categories naturally
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
-        shuffleArray(reviewDatabase);
-
-        // Mix of real-sounding names, nicknames, and "user" types
-        const names = [
-            "Jordan S.", "Mikey P.", "Sarah J.", "Ash_Tray", "BigMike", 
-            "Emily Rose", "David K.", "Jess_W", "Chris_B", "Mandy99",
-            "Latoya J.", "Maria_Garcia", "Bella C.", "User8821",
-            "Sophie L.", "Ethan M.", "Liv_P", "Liam N.", "Ava K.",
-            "Noah J.", "Izzy D.", "Mason F.", "Mia H.", "TargetFan",
-            "Charlie Z.", "Will X.", "Amy C.", "James V.", "Harper B.",
-            "DealsHunter", "J-Lo", "User1234", "CryptoKing", "TargetShopper",
-            "MomOf3", "BrokeStudent", "GamerGuy99", "SarahBear", "Jason D.",
-            "Kanye_West_Real", "TayTay", "BieberFan", "Drizzy", "Cardi B",
-            "Nicki", "QueenB", "Jay", "Riri", "Adele"
-        ];
-
-        // Updated colors to fit Retail Theme
-        const colors = ['#e31837', '#900014', '#1d1d1d', '#555', '#2C3E50', '#8E44AD'];
-
-        // --- 2. LIVE FEED LOGIC ---
-        const feedArea = document.getElementById('feedArea');
-
-        function createReviewElement(name, text, isUser = false) {
-            const div = document.createElement('div');
-            div.className = 'review-bubble';
-            
-            // Get Initials
-            let initials = name.substring(0,2).toUpperCase();
-            if(name.includes(' ')) {
-                 initials = name.split(' ').map(n => n[0]).join('').substring(0,2).toUpperCase();
-            }
-            
-            let color = isUser ? '#000' : colors[Math.floor(Math.random() * colors.length)];
-            
-            div.innerHTML = `
-                <div class="rv-avatar" style="background: ${color}">${initials}</div>
-                <div class="rv-content">
-                    <div class="rv-name">${name}</div>
-                    <div class="rv-text">${text}</div>
-                    <span class="rv-time">Just now</span>
-                </div>
-            `;
-            return div;
-        }
-
-        function addReviewToFeed(name, text) {
-            const review = createReviewElement(name, text);
-            feedArea.appendChild(review);
-            
-            // Auto Scroll to bottom
-            feedArea.scrollTop = feedArea.scrollHeight;
-
-            // Keep DOM light
-            if (feedArea.children.length > 50) {
-                feedArea.removeChild(feedArea.firstChild);
-            }
-        }
-
-        // --- 3. SIMULATE BUSY TRAFFIC (With Random Delays) ---
-        let reviewIndex = 0;
-        function scheduleNextReview() {
-            // Random delay between 800ms and 3000ms to feel human
-            const delay = Math.floor(Math.random() * 2200) + 800;
-            setTimeout(() => {
-                const text = reviewDatabase[reviewIndex % reviewDatabase.length];
-                const name = names[Math.floor(Math.random() * names.length)];
-                
-                addReviewToFeed(name, text);
-                reviewIndex++;
-                
-                scheduleNextReview();
-            }, delay);
-        }
-
-        // Initialize with a few starter comments
-        addReviewToFeed("Sarah J.", "my cart is literally $400 rn I need this to work");
-        addReviewToFeed("DealsHunter", "Just paid for my entire haul with this. Clutccchhh.");
-        addReviewToFeed("Ash_Tray", "yooo just got the email! hype");
-        
-        scheduleNextReview();
-
-        // --- 4. USER INTERACTION ---
-        function postUserComment() {
-            const input = document.getElementById('userComment');
-            const text = input.value.trim();
-            if (text) {
-                addReviewToFeed("You", text, true);
-                input.value = "";
-            }
-        }
-
-        // --- 5. VIEWER COUNT FLUCTUATION ---
-        const viewerCountEl = document.getElementById('viewer-count');
-        let viewers = 1245;
-
-        setInterval(() => {
-            const change = Math.floor(Math.random() * 15) - 5; 
-            viewers += change;
-            // Format number with commas
-            viewerCountEl.innerText = viewers.toLocaleString();
-        }, 3000);
-
-        // --- 6. POPUP NOTIFICATION (Toast) ---
-        function showToast() {
-            const toast = document.getElementById('toast');
-            const toastText = document.getElementById('toast-text');
-            const cities = ["NY", "CA", "TX", "FL", "OH", "IL", "GA", "WA", "AZ"];
-            const city = cities[Math.floor(Math.random() * cities.length)];
-            const user = names[Math.floor(Math.random() * names.length)].split(' ')[0];
-            
-            toastText.innerHTML = `<strong>${user}</strong> (from ${city}) claimed <strong>$500</strong>`;
-            
-            toast.classList.add('show');
-            setTimeout(() => { toast.classList.remove('show'); }, 4000);
-        }
-
-        setInterval(showToast, 7000);
-
     </script>
 </body>
 </html>
