@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retail Shopping Reward</title>
+    <title>Target Shopper Reward - LIVE</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -12,12 +12,12 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f4f4f4; /* Soft gray */
+            background-color: #fdf2f2; /* Soft red/blush tint */
             color: #333;
             display: flex;
             justify-content: center;
             min-height: 100vh;
-            padding-bottom: 110px; /* Increased to account for disclaimer and sticky button */
+            padding-bottom: 90px;
             overflow-x: hidden;
         }
 
@@ -30,29 +30,52 @@
             align-items: center;
         }
 
+        /* --- Live Badge --- */
+        .live-badge {
+            background: #1d1d1d;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            align-self: flex-start;
+        }
+        .blink-dot {
+            width: 8px;
+            height: 8px;
+            background: #ff4d4d;
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
         /* --- Hero Art --- */
         .gift-card-img {
             width: 100%;
             border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(227, 24, 55, 0.25);
-            /* Red Gradient */
-            background: linear-gradient(135deg, #e31837 0%, #900014 100%);
+            box-shadow: 0 10px 25px rgba(204, 0, 0, 0.25);
+            /* Target Red Gradient */
+            background: linear-gradient(135deg, #e60000 0%, #990000 100%);
             aspect-ratio: 1.6;
             display: flex;
             align-items: center; justify-content: center;
             position: relative; overflow: hidden; margin-bottom: 20px;
             border: 1px solid rgba(0,0,0,0.05);
-            margin-top: 10px;
         }
         
-        .shopping-icon {
+        .card-icon {
             font-size: 80px;
             color: #ffffff;
             text-shadow: 2px 4px 10px rgba(0,0,0,0.2);
-            animation: floatCart 3s ease-in-out infinite;
+            animation: floatIcon 3s ease-in-out infinite;
         }
 
-        @keyframes floatCart {
+        @keyframes floatIcon {
             0% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-5px) rotate(3deg); }
             100% { transform: translateY(0px) rotate(0deg); }
@@ -61,9 +84,9 @@
         .price-tag { 
             position: absolute;
             bottom: 15px; right: 15px; 
-            color: #e31837; 
+            color: #cc0000; 
             font-weight: 900; font-size: 1.4rem; 
-            background: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.95);
             padding: 5px 10px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -89,8 +112,9 @@
 
         /* Checklist */
         .list-item { display: flex; align-items: flex-start; margin-bottom: 15px; }
+        .list-item:last-child { margin-bottom: 0; }
         .icon-check { 
-            background-color: #e31837;
+            background-color: #cc0000;
             color: #ffffff;
             width: 20px;
             height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; margin-right: 12px; flex-shrink: 0;
@@ -111,21 +135,6 @@
         .question-item.active .q-answer { max-height: 100px; margin-top: 10px; }
         .question-item.active .fa-plus { transform: rotate(45deg); transition: transform 0.3s; }
 
-        /* --- Disclaimer Footer --- */
-        .disclaimer-footer {
-            font-size: 0.65rem;
-            color: #888;
-            text-align: center;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            line-height: 1.4;
-            padding: 0 10px;
-        }
-        .disclaimer-footer a {
-            color: #666;
-            text-decoration: underline;
-        }
-
         /* --- Footer --- */
         .sticky-footer {
             position: fixed;
@@ -136,24 +145,48 @@
             z-index: 100;
         }
         .claim-btn {
-            background-color: #e31837;
+            background-color: #cc0000;
             color: #ffffff; 
             width: 100%; max-width: 400px;
             padding: 16px; border: none; border-radius: 12px;
             font-size: 1.2rem; font-weight: 700; cursor: pointer;
-            box-shadow: 0 4px 15px rgba(227, 24, 55, 0.4);
+            box-shadow: 0 4px 15px rgba(204, 0, 0, 0.4);
             animation: pulseBtn 2s infinite;
         }
         @keyframes pulseBtn { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+
+        /* --- Toast Notification --- */
+        .toast {
+            position: fixed;
+            top: 15px; right: 15px;
+            background: rgba(0,0,0,0.9); color: white;
+            padding: 10px 15px; border-radius: 8px;
+            font-size: 0.75rem; display: flex; align-items: center;
+            gap: 10px;
+            transform: translateX(150%); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 999;
+        }
+        .toast.show { transform: translateX(0); }
+
     </style>
 </head>
 <body>
 
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-gift" style="color: #ff4d4d;"></i>
+        <span id="toast-text">User claimed reward</span>
+    </div>
+
     <div class="mobile-container">
         
+        <div class="live-badge">
+            <div class="blink-dot"></div>
+            LIVE: <span id="viewer-count">1,245</span> viewing
+        </div>
+
         <div class="gift-card-img">
-            <div class="logo-text"><i class="fa-solid fa-star"></i> SHOPPING REWARDS</div>
-            <i class="fa-solid fa-cart-shopping shopping-icon"></i>
+            <div class="logo-text"><i class="fa-solid fa-star"></i> TARGET REWARDS</div>
+            <i class="fa-solid fa-cart-shopping card-icon"></i>
             <div class="price-tag">$500</div>
         </div>
 
@@ -200,15 +233,10 @@
             </div>
         </div>
 
-        <!-- Disclaimer Section added here -->
-        <div class="disclaimer-footer">
-            <p><strong>Disclaimer:</strong> This website is an independent rewards program and is not affiliated with, sponsored by, or endorsed by Target Brands, Inc. or any other retailer. All trademarks and logos belong to their respective owners. Completion of multiple sponsor offers is required to claim the reward. Please review our <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a> for full details.</p>
-        </div>
-
     </div>
 
     <div class="sticky-footer">
-        <button class="claim-btn" onclick="window.location.href='https://trkoffer.net/cl/i/34jvrm'">Claim $500 Now</button>
+        <button class="claim-btn" onclick="window.location.href='https://offertrk.org/cl/i/34jvrm'">Claim $500 Now</button>
     </div>
 
     <script>
@@ -216,6 +244,41 @@
         function toggleAnswer(element) {
             element.classList.toggle('active');
         }
+
+        // --- NAMES FOR NOTIFICATIONS ---
+        const names = [
+            "Jordan S.", "Mikey P.", "Sarah J.", "BigMike", 
+            "Emily R.", "David K.", "Jess W.", "Chris B.", "Mandy",
+            "Latoya J.", "Maria G.", "Bella C.", "Sophie L.", 
+            "Ethan M.", "Liam N.", "Ava K.", "Noah J.", "Mason F.", 
+            "Mia H.", "Charlie Z.", "Amy C.", "James V.", "Harper B.", "Jason D."
+        ];
+
+        // --- VIEWER COUNT FLUCTUATION ---
+        const viewerCountEl = document.getElementById('viewer-count');
+        let viewers = 1245;
+
+        setInterval(() => {
+            const change = Math.floor(Math.random() * 15) - 5; 
+            viewers += change;
+            viewerCountEl.innerText = viewers.toLocaleString();
+        }, 3000);
+
+        // --- POPUP NOTIFICATION (Toast) ---
+        function showToast() {
+            const toast = document.getElementById('toast');
+            const toastText = document.getElementById('toast-text');
+            const cities = ["NY", "CA", "TX", "FL", "OH", "IL", "GA", "WA", "AZ"];
+            const city = cities[Math.floor(Math.random() * cities.length)];
+            const user = names[Math.floor(Math.random() * names.length)].split(' ')[0];
+            
+            toastText.innerHTML = `<strong>${user}</strong> (from ${city}) claimed <strong>$500</strong>`;
+            
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 4000);
+        }
+
+        setInterval(showToast, 7000);
     </script>
 </body>
 </html>
